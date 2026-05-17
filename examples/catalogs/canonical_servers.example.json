@@ -1,23 +1,15 @@
 {
-  "epoch": "2026-05-16",
-  "schema": "arc.seedcatalog.flex_server_catalog.v5",
   "servers": [
     {
-      "capabilities": [
-        "metadata_lookup",
-        "availability_check"
-      ],
       "items": [
         {
           "category": "movie",
           "path": "/catalog/public-domain/item/001",
-          "quality": "1080p",
           "title": "Temporary Demo Title A"
         },
         {
           "category": "public-domain",
           "path": "/catalog/public-domain/item/002",
-          "quality": "720p",
           "title": "Temporary Demo Title B"
         }
       ],

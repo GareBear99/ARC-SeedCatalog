@@ -1,26 +1,18 @@
 {
   "exclude": [
     "raw_input.json",
-    "resolver_map.json",
     "titles",
     "paths",
     "urls",
     "server_names",
-    "hostnames",
     "media",
     "user_data"
   ],
   "include": [
-    "receipt_bundle.json",
-    "policy_bundle.json",
-    "index_bundle.json",
-    "adapter_bundle.json",
-    "category_map_bundle.json",
-    "arc_core_handoff_bundle.json",
+    "split_bundle.json",
     "arc_core_records.jsonl",
-    "omnibinary_hash_report.json",
-    "validation_bundle.json"
+    "README.txt"
   ],
-  "schema": "arc.rar.seedcatalog_pack_template.v1",
+  "schema": "arc.rar.seedcatalog_pack_template.v6",
   "stores_raw_data": false
 }

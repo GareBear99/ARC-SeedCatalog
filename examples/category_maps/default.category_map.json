@@ -1,0 +1,9 @@
+{
+  "fallback_category": "catalog/authorized/uncategorized",
+  "mappings": {
+    "movie": "media/movie/authorized",
+    "public-domain": "media/public-domain/authorized",
+    "show": "media/show/authorized"
+  },
+  "schema": "arc.seedcatalog.category_map.v1"
+}

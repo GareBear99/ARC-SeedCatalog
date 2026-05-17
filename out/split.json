@@ -1,0 +1,90 @@
+{
+  "schema": "arc.seedcatalog.split_bundle.v6",
+  "receipt_bundle": {
+    "schema": "arc.seedcatalog.receipt_bundle.v6",
+    "count": 2,
+    "receipts": [
+      {
+        "schema": "arc.seedcatalog.entry_receipt.v6",
+        "entry_id": "hmac-sha256:f118acb2582994346c30606a9a375ef187085fc91fac3c7ab33b8d3e6a6c1d27",
+        "source_id": "sha256:67033e813a7ad0f983a783495c6f2d215ab392fcf29252a87dfbca09f3d535b3",
+        "category_vector": "hmac-sha256:e653135cab10680aa736427275b2b67cbe744b32eabf94cf1bf8a2866daaac43",
+        "category_path_hash": "sha256:7699feb7160d84fe020b26a053a7cc52150bf2f983019dcb417853d287d4004d",
+        "ruleset_hash": "sha256:d228623d2ab94bcaba9562250cfa432d608e5bed8615e3fb009ad264b6dc59a5",
+        "category_map_hash": "sha256:2355864b978a85b8dbedfd86d4b11af8173a67d8b7af3b6e1b25172194948281",
+        "adapter_profile_hash": "sha256:8773e0762ec497b3792b9cccdd99c96ba3260cc7c9820ebe588da677546f551a",
+        "epoch": "2026-05-16",
+        "stored_raw_data": false,
+        "stores_title": false,
+        "stores_path": false,
+        "stores_server_name": false,
+        "stores_url": false,
+        "stores_user_data": false,
+        "receipt_hash": "sha256:3b3b6b19b30f227100f165281e7fdc49ca5e5c1ad6ead961e177df570707f067"
+      },
+      {
+        "schema": "arc.seedcatalog.entry_receipt.v6",
+        "entry_id": "hmac-sha256:cdaa03e3a4fb07da47d6bd65f55fadc25606c8cd5c711f30fb6c514076933427",
+        "source_id": "sha256:67033e813a7ad0f983a783495c6f2d215ab392fcf29252a87dfbca09f3d535b3",
+        "category_vector": "hmac-sha256:8a8459bbbbdbb2761025f49355391e09ff2f63e23a27417feb33fa9ec6bc4d59",
+        "category_path_hash": "sha256:9684b0da5d68ae4af818c64fa8538cd698b9e5654107d64551d8ef53b4fadab7",
+        "ruleset_hash": "sha256:d228623d2ab94bcaba9562250cfa432d608e5bed8615e3fb009ad264b6dc59a5",
+        "category_map_hash": "sha256:2355864b978a85b8dbedfd86d4b11af8173a67d8b7af3b6e1b25172194948281",
+        "adapter_profile_hash": "sha256:8773e0762ec497b3792b9cccdd99c96ba3260cc7c9820ebe588da677546f551a",
+        "epoch": "2026-05-16",
+        "stored_raw_data": false,
+        "stores_title": false,
+        "stores_path": false,
+        "stores_server_name": false,
+        "stores_url": false,
+        "stores_user_data": false,
+        "receipt_hash": "sha256:8798357512a57dc4f08c2ffb8d1cec0f708401180174c5754f1c3fa2797feea7"
+      }
+    ],
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:4261b821076fab08fde8207d1be3475bbf5ef5917fa6890b30b1d9181942f0e3"
+  },
+  "arc_core_handoff_bundle": {
+    "schema": "arc.core.seedcatalog_handoff_bundle.v6",
+    "records": [
+      {
+        "schema": "arc.core.seedcatalog_registration.v6",
+        "source": "arc-seedcatalog",
+        "object_type": "seedcatalog_entry_receipt",
+        "receipt_hash": "sha256:3b3b6b19b30f227100f165281e7fdc49ca5e5c1ad6ead961e177df570707f067",
+        "entry_id": "hmac-sha256:f118acb2582994346c30606a9a375ef187085fc91fac3c7ab33b8d3e6a6c1d27",
+        "source_id": "sha256:67033e813a7ad0f983a783495c6f2d215ab392fcf29252a87dfbca09f3d535b3",
+        "category_vector": "hmac-sha256:e653135cab10680aa736427275b2b67cbe744b32eabf94cf1bf8a2866daaac43",
+        "category_path_hash": "sha256:7699feb7160d84fe020b26a053a7cc52150bf2f983019dcb417853d287d4004d",
+        "ruleset_hash": "sha256:d228623d2ab94bcaba9562250cfa432d608e5bed8615e3fb009ad264b6dc59a5",
+        "category_map_hash": "sha256:2355864b978a85b8dbedfd86d4b11af8173a67d8b7af3b6e1b25172194948281",
+        "adapter_profile_hash": "sha256:8773e0762ec497b3792b9cccdd99c96ba3260cc7c9820ebe588da677546f551a",
+        "stores_raw_data": false
+      },
+      {
+        "schema": "arc.core.seedcatalog_registration.v6",
+        "source": "arc-seedcatalog",
+        "object_type": "seedcatalog_entry_receipt",
+        "receipt_hash": "sha256:8798357512a57dc4f08c2ffb8d1cec0f708401180174c5754f1c3fa2797feea7",
+        "entry_id": "hmac-sha256:cdaa03e3a4fb07da47d6bd65f55fadc25606c8cd5c711f30fb6c514076933427",
+        "source_id": "sha256:67033e813a7ad0f983a783495c6f2d215ab392fcf29252a87dfbca09f3d535b3",
+        "category_vector": "hmac-sha256:8a8459bbbbdbb2761025f49355391e09ff2f63e23a27417feb33fa9ec6bc4d59",
+        "category_path_hash": "sha256:9684b0da5d68ae4af818c64fa8538cd698b9e5654107d64551d8ef53b4fadab7",
+        "ruleset_hash": "sha256:d228623d2ab94bcaba9562250cfa432d608e5bed8615e3fb009ad264b6dc59a5",
+        "category_map_hash": "sha256:2355864b978a85b8dbedfd86d4b11af8173a67d8b7af3b6e1b25172194948281",
+        "adapter_profile_hash": "sha256:8773e0762ec497b3792b9cccdd99c96ba3260cc7c9820ebe588da677546f551a",
+        "stores_raw_data": false
+      }
+    ],
+    "entry_count": 2,
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:4062c0d6acb50a9a550667f605d5ace7d5a56160b83026d159db0a3288badc5f"
+  },
+  "signature_envelope": {
+    "status": "unsigned",
+    "signing_algorithm": "ed25519-planned",
+    "stores_raw_data": false
+  },
+  "stores_raw_data": false,
+  "catalog_hash": "sha256:60aedfc5f375429f308bad870c7f2eae6451f13b6ccbbfa65537d717dcdacdc2"
+}

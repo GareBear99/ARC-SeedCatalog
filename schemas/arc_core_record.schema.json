@@ -1,14 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "properties": {
-    "object_type": {
-      "const": "seedcatalog_entry_receipt"
-    },
     "schema": {
-      "const": "arc.core.seedcatalog_registration.v4"
-    },
-    "source": {
-      "const": "arc-seedcatalog"
+      "const": "arc.core.seedcatalog_registration.v6"
     },
     "stores_raw_data": {
       "const": false
@@ -16,15 +10,12 @@
   },
   "required": [
     "schema",
-    "source",
-    "object_type",
     "receipt_hash",
     "entry_id",
     "source_id",
     "category_vector",
-    "ruleset_hash",
     "stores_raw_data"
   ],
-  "title": "ARC-Core SeedCatalog Registration Record v4",
+  "title": "ARC-Core SeedCatalog Record v6",
   "type": "object"
 }

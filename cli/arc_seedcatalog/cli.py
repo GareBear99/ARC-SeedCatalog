@@ -1,110 +1,57 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-
-import argparse
-import hashlib
-import hmac
-import json
+import argparse, hashlib, hmac, json, zipfile
 from pathlib import Path
 from datetime import date
-
-def canon(obj):
-    return json.dumps(obj, sort_keys=True, separators=(",", ":"))
-
-def sha256_hex(s: str) -> str:
-    return hashlib.sha256(s.encode("utf-8")).hexdigest()
-
-def hmac_sha256(secret: str, msg: str) -> str:
-    return hmac.new(secret.encode("utf-8"), msg.encode("utf-8"), hashlib.sha256).hexdigest()
-
-DEFAULT_CATEGORY_MAP = {
-    "fallback_category": "catalog/authorized/uncategorized",
-    "mappings": {
-        "movie": "media/movie/authorized",
-        "show": "media/show/authorized",
-        "public-domain": "media/public-domain/authorized",
-        "internal": "asset/internal/authorized",
-        "game": "game/homebrew/authorized",
-    }
-}
-
+def canon(obj): return json.dumps(obj, sort_keys=True, separators=(",", ":"))
+def sha(s): return hashlib.sha256(s.encode()).hexdigest()
+def hm(seed,msg): return hmac.new(seed.encode(), msg.encode(), hashlib.sha256).hexdigest()
 def rows(doc):
-    if isinstance(doc, list):
-        return doc
-    if isinstance(doc, dict) and isinstance(doc.get("servers"), list):
-        out = []
-        for server in doc["servers"]:
-            for item in server.get("items", []):
-                merged = dict(item)
-                merged["_server_type"] = server.get("server_type", "authorized_catalog")
-                merged["_region"] = server.get("region", "unknown")
-                merged["_legal_basis"] = server.get("legal_basis", "authorized_or_internal")
-                merged["_server_id"] = server.get("server_id", "source")
-                out.append(merged)
-        return out
-    if isinstance(doc, dict) and isinstance(doc.get("data"), list):
-        return doc["data"]
-    return []
-
-def normalize_category(raw):
-    s = str(raw or "").strip().lower().replace(" ", "-")
-    return DEFAULT_CATEGORY_MAP["mappings"].get(s, f"catalog/authorized/{s}" if s else DEFAULT_CATEGORY_MAP["fallback_category"])
-
-def ingest(path: Path, seed: str, epoch: str):
-    doc = json.loads(path.read_text())
-    receipts = []
-    ruleset_hash = sha256_hex("arc.seedcatalog.ruleset.v5")
-    for item in rows(doc):
-        category = normalize_category(item.get("category") or item.get("genre") or item.get("type"))
-        source_fp = {
-            "server_type": item.get("_server_type", item.get("type", "authorized_catalog")),
-            "region": item.get("_region", "unknown"),
-            "legal_basis": item.get("_legal_basis", "authorized_or_internal"),
-        }
-        source_id = sha256_hex(canon(source_fp))
-        volatile = f"{item.get('_server_id', item.get('server','source'))}|{item.get('path', item.get('url', item.get('id','')))}|{item.get('title', item.get('name',''))}|{epoch}"
-        entry_id = hmac_sha256(seed, source_id + "|" + volatile)
-        cat_vec = hmac_sha256(seed, category + "|" + ruleset_hash)
-        core = {
-            "schema": "arc.seedcatalog.entry_receipt.v5",
-            "entry_id": "hmac-sha256:" + entry_id,
-            "source_id": "sha256:" + source_id,
-            "category_vector": "hmac-sha256:" + cat_vec,
-            "category_path_hash": "sha256:" + sha256_hex(category),
-            "ruleset_hash": "sha256:" + ruleset_hash,
-            "epoch": epoch,
-            "stored_raw_data": False,
-            "stores_title": False,
-            "stores_path": False,
-            "stores_server_name": False,
-            "stores_url": False,
-            "stores_user_data": False,
-        }
-        core["receipt_hash"] = "sha256:" + sha256_hex(canon(core))
-        receipts.append(core)
-    bundle = {
-        "schema": "arc.seedcatalog.cli_receipt_bundle.v5",
-        "count": len(receipts),
-        "receipts": receipts,
-        "stores_raw_data": False,
-    }
-    bundle["bundle_hash"] = "sha256:" + sha256_hex(canon(bundle))
-    return bundle
-
+    if isinstance(doc,list): return doc
+    out=[]
+    if isinstance(doc,dict) and isinstance(doc.get("servers"),list):
+        for srv in doc["servers"]:
+            for it in srv.get("items",[]):
+                x=dict(it); x["_server_type"]=srv.get("server_type","authorized_catalog"); x["_region"]=srv.get("region","unknown"); x["_legal_basis"]=srv.get("legal_basis","authorized_or_internal"); x["_server_id"]=srv.get("server_id","source"); out.append(x)
+    elif isinstance(doc,dict) and isinstance(doc.get("data"),list): out=doc["data"]
+    return out
+def cat(raw):
+    m={"movie":"media/movie/authorized","show":"media/show/authorized","public-domain":"media/public-domain/authorized","internal":"asset/internal/authorized","game":"game/homebrew/authorized"}
+    s=str(raw or "").lower().replace(" ","-")
+    return m.get(s, f"catalog/authorized/{s}" if s else "catalog/authorized/uncategorized")
+def build(path,seed,epoch):
+    doc=json.loads(Path(path).read_text()); receipts=[]; rh=sha("arc.seedcatalog.ruleset.v6"); cmh=sha("category-map-v6"); ah=sha("adapter-v6")
+    for it in rows(doc):
+        c=cat(it.get("category")); sf={"server_type":it.get("_server_type",it.get("type","authorized_catalog")),"region":it.get("_region","unknown"),"legal_basis":it.get("_legal_basis","authorized_or_internal")}
+        sid=sha(canon(sf)); vol=f"{it.get('_server_id',it.get('server','source'))}|{it.get('path',it.get('url',it.get('id','')))}|{it.get('title',it.get('name',''))}|{epoch}"
+        core={"schema":"arc.seedcatalog.entry_receipt.v6","entry_id":"hmac-sha256:"+hm(seed,sid+"|"+vol),"source_id":"sha256:"+sid,"category_vector":"hmac-sha256:"+hm(seed,c+"|"+rh+"|"+cmh),"category_path_hash":"sha256:"+sha(c),"ruleset_hash":"sha256:"+rh,"category_map_hash":"sha256:"+cmh,"adapter_profile_hash":"sha256:"+ah,"epoch":epoch,"stored_raw_data":False,"stores_title":False,"stores_path":False,"stores_server_name":False,"stores_url":False,"stores_user_data":False}
+        core["receipt_hash"]="sha256:"+sha(canon(core)); receipts.append(core)
+    rb={"schema":"arc.seedcatalog.receipt_bundle.v6","count":len(receipts),"receipts":receipts,"stores_raw_data":False}; rb["bundle_hash"]="sha256:"+sha(canon(rb))
+    records=[{"schema":"arc.core.seedcatalog_registration.v6","source":"arc-seedcatalog","object_type":"seedcatalog_entry_receipt","receipt_hash":r["receipt_hash"],"entry_id":r["entry_id"],"source_id":r["source_id"],"category_vector":r["category_vector"],"category_path_hash":r["category_path_hash"],"ruleset_hash":r["ruleset_hash"],"category_map_hash":r["category_map_hash"],"adapter_profile_hash":r["adapter_profile_hash"],"stores_raw_data":False} for r in receipts]
+    ac={"schema":"arc.core.seedcatalog_handoff_bundle.v6","records":records,"entry_count":len(records),"stores_raw_data":False}; ac["bundle_hash"]="sha256:"+sha(canon(ac))
+    split={"schema":"arc.seedcatalog.split_bundle.v6","receipt_bundle":rb,"arc_core_handoff_bundle":ac,"signature_envelope":{"status":"unsigned","signing_algorithm":"ed25519-planned","stores_raw_data":False},"stores_raw_data":False}; split["catalog_hash"]="sha256:"+sha(canon(split)); return split
+def verify(path):
+    data=json.loads(Path(path).read_text()); ok=data.get("stores_raw_data") is False and data.get("receipt_bundle",{}).get("stores_raw_data") is False; print(json.dumps({"ok":ok,"catalog_hash":data.get("catalog_hash")},indent=2)); return 0 if ok else 1
+def export_jsonl(path,out):
+    data=json.loads(Path(path).read_text()); Path(out).parent.mkdir(parents=True,exist_ok=True); Path(out).write_text("\n".join(json.dumps(r) for r in data["arc_core_handoff_bundle"]["records"])+"\n"); print(out)
+def proof_pack(path,out):
+    data=json.loads(Path(path).read_text()); pack={"schema":"arc.seedcatalog.proof_pack.v6","split_bundle":data,"stores_raw_data":False}; Path(out).parent.mkdir(parents=True,exist_ok=True); Path(out).write_text(json.dumps(pack,indent=2)+"\n"); print(out)
+def zip_pack(path,out):
+    data=json.loads(Path(path).read_text()); Path(out).parent.mkdir(parents=True,exist_ok=True)
+    with zipfile.ZipFile(out,"w",zipfile.ZIP_DEFLATED) as z:
+        z.writestr("split_bundle.json",json.dumps(data,indent=2)); z.writestr("arc_core_records.jsonl","\n".join(json.dumps(r) for r in data["arc_core_handoff_bundle"]["records"])+"\n"); z.writestr("README.txt","ARC-SeedCatalog proof pack. No raw input JSON included.\n")
+    print(out)
 def main():
-    ap = argparse.ArgumentParser()
-    sub = ap.add_subparsers(dest="cmd", required=True)
-    ing = sub.add_parser("ingest")
-    ing.add_argument("json_file")
-    ing.add_argument("--seed", default="arc-seedcatalog-local-cli-seed")
-    ing.add_argument("--epoch", default=date.today().isoformat())
-    ing.add_argument("--out", default="arc-seedcatalog-cli-receipts.json")
-    args = ap.parse_args()
-    if args.cmd == "ingest":
-        bundle = ingest(Path(args.json_file), args.seed, args.epoch)
-        Path(args.out).write_text(json.dumps(bundle, indent=2) + "\n")
-        print(args.out)
-        print(bundle["bundle_hash"])
-
-if __name__ == "__main__":
-    main()
+    ap=argparse.ArgumentParser(); sub=ap.add_subparsers(dest="cmd",required=True)
+    ing=sub.add_parser("ingest"); ing.add_argument("json_file"); ing.add_argument("--seed",default="arc-seedcatalog-local-cli-seed"); ing.add_argument("--epoch",default=date.today().isoformat()); ing.add_argument("--out",default="out/split.json")
+    ver=sub.add_parser("verify"); ver.add_argument("split_file")
+    ex=sub.add_parser("export-jsonl"); ex.add_argument("split_file"); ex.add_argument("--out",default="out/records.jsonl")
+    pp=sub.add_parser("proof-pack"); pp.add_argument("split_file"); pp.add_argument("--out",default="out/proof-pack.json")
+    zp=sub.add_parser("zip-pack"); zp.add_argument("split_file"); zp.add_argument("--out",default="out/proof-pack.zip")
+    a=ap.parse_args()
+    if a.cmd=="ingest": Path(a.out).parent.mkdir(parents=True,exist_ok=True); Path(a.out).write_text(json.dumps(build(a.json_file,a.seed,a.epoch),indent=2)+"\n"); print(a.out)
+    elif a.cmd=="verify": raise SystemExit(verify(a.split_file))
+    elif a.cmd=="export-jsonl": export_jsonl(a.split_file,a.out)
+    elif a.cmd=="proof-pack": proof_pack(a.split_file,a.out)
+    elif a.cmd=="zip-pack": zip_pack(a.split_file,a.out)
+if __name__=="__main__": main()
