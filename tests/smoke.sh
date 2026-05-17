@@ -15,4 +15,4 @@ python cli/arc_seedcatalog/cli.py proof-pack out/split.json --out out/proof-pack
 python cli/arc_seedcatalog/cli.py zip-pack out/split.json --out out/proof-pack.zip
 python cli/arc_seedcatalog/cli.py export-binary out/split.json --out out/split.arcbin
 python cli/arc_seedcatalog/cli.py verify-binary out/split.arcbin
-echo "ARC-SeedCatalog v0.8 smoke passed"
+echo "ARC-SeedCatalog v0.9 smoke passed"

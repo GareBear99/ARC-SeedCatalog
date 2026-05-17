@@ -14,6 +14,6 @@
     "arc_core_records.jsonl",
     "README.txt"
   ],
-  "schema": "arc.rar.seedcatalog_pack_template.v8",
+  "schema": "arc.rar.seedcatalog_pack_template.v9",
   "stores_raw_data": false
 }

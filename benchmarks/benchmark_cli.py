@@ -24,7 +24,7 @@ def main():
         verify_bin_t=run([sys.executable,str(CLI),"verify-binary",str(bin_path)])
         data=json.loads(split.read_text())
         results.append({"case":name,"entries":data["receipt_bundle"]["count"],"ingest_seconds_median":statistics.median(times),"verify_seconds":verify_t,"audit_seconds":audit_t,"export_binary_seconds":export_bin_t,"verify_binary_seconds":verify_bin_t,"split_size_bytes":split.stat().st_size})
-    report={"schema":"arc.seedcatalog.benchmark_report.v8","python":sys.version,"cases":results,"all_passed":True}
+    report={"schema":"arc.seedcatalog.benchmark_report.v9","python":sys.version,"cases":results,"all_passed":True}
     (ROOT/"docs"/"BENCHMARK_REPORT.json").write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(report,indent=2))
 if __name__=="__main__": main()

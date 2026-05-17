@@ -13,6 +13,10 @@ deterministic replay: passed
 JSONL export: passed
 Arc-RAR style ZIP proof pack scaffold: passed
 OmniBinary .arcbin export/verify scaffold: passed
+public documentation: present
+GitHub workflows: present
+issue templates: present
+release checklist: present
 ```
 
 See:
@@ -21,6 +25,7 @@ See:
 docs/BENCHMARK_REPORT.md
 docs/BENCHMARK_REPORT.json
 docs/ADVERSARIAL_REPORT.md
+docs/PRODUCTION_READINESS.md
 out/bench/
 out/adversarial/
 out/replay/

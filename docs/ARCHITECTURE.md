@@ -1,3 +1,3 @@
 # Architecture
 
-v0.8 hardens the static + CLI split-bundle system with leak scanning, replay gates, ARC-Core receiver stubs, Arc-RAR proof packs, and OmniBinary binary export.
+ARC-SeedCatalog v0.9 is a static + CLI split-bundle system using ARC-Core, Arc-RAR, and OmniBinary boundaries.

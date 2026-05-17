@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+
 router = APIRouter(prefix="/seedcatalog", tags=["seedcatalog"])
 
 @router.post("/register-bundle")

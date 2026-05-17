@@ -1,3 +1,3 @@
-# Deploy
+# Deploy GitHub Pages
 
-Push repo and enable GitHub Pages using the included workflow.
+Push the repository and use the included Pages workflow.

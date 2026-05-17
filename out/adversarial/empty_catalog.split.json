@@ -1,14 +1,14 @@
 {
-  "schema": "arc.seedcatalog.split_bundle.v8",
+  "schema": "arc.seedcatalog.split_bundle.v9",
   "receipt_bundle": {
-    "schema": "arc.seedcatalog.receipt_bundle.v8",
+    "schema": "arc.seedcatalog.receipt_bundle.v9",
     "count": 0,
     "receipts": [],
     "stores_raw_data": false,
-    "bundle_hash": "sha256:33581f79f11a02bec047067edc48615d6fd2b9b7b5ea21af05648e64001eb276"
+    "bundle_hash": "sha256:f9cd780b3ba35bfbdd49e7970f0fa09d4fba06145afbacebcb6c425f0647eb9c"
   },
   "policy_bundle": {
-    "schema": "arc.seedcatalog.policy_bundle.v8",
+    "schema": "arc.seedcatalog.policy_bundle.v9",
     "raw_field_denylist": [
       "title",
       "name",
@@ -32,28 +32,30 @@
       "email",
       "user"
     ],
+    "lawful_use_only": true,
     "stores_raw_data": false,
-    "bundle_hash": "sha256:813d8494d25fc3c508532a461ea502799690d571b5ba8f12eec6fc8456317686"
+    "bundle_hash": "sha256:a13ba8b6369016c624807db82e681baf093ce120c352ea0a097b6216b9475e46"
   },
   "arc_core_handoff_bundle": {
-    "schema": "arc.core.seedcatalog_handoff_bundle.v8",
+    "schema": "arc.core.seedcatalog_handoff_bundle.v9",
     "records": [],
     "entry_count": 0,
     "stores_raw_data": false,
-    "bundle_hash": "sha256:e7d1520e0a3b828ee433981db6a32e6a42ee09d56e771ac7b14aed7a95aee5a3"
+    "bundle_hash": "sha256:763d3755bfd2933a782d7355d2cf0b4fffa6086c4b36770900aa57bd38eadd86"
   },
   "signature_envelope": {
-    "schema": "arc.seedcatalog.signature_envelope.v8",
+    "schema": "arc.seedcatalog.signature_envelope.v9",
     "status": "unsigned",
     "signing_algorithm": "ed25519-planned",
+    "production_note": "v0.9 is signing-ready; v1.0 should include real Ed25519 signing.",
     "signable_hashes": {
-      "receipt_bundle": "sha256:33581f79f11a02bec047067edc48615d6fd2b9b7b5ea21af05648e64001eb276",
-      "arc_core_handoff_bundle": "sha256:e7d1520e0a3b828ee433981db6a32e6a42ee09d56e771ac7b14aed7a95aee5a3",
-      "policy_bundle": "sha256:813d8494d25fc3c508532a461ea502799690d571b5ba8f12eec6fc8456317686"
+      "receipt_bundle": "sha256:f9cd780b3ba35bfbdd49e7970f0fa09d4fba06145afbacebcb6c425f0647eb9c",
+      "arc_core_handoff_bundle": "sha256:763d3755bfd2933a782d7355d2cf0b4fffa6086c4b36770900aa57bd38eadd86",
+      "policy_bundle": "sha256:a13ba8b6369016c624807db82e681baf093ce120c352ea0a097b6216b9475e46"
     },
     "stores_raw_data": false,
-    "bundle_hash": "sha256:3a0a14e2b392c743dd53704f662c253fcbb897e5107e04793b37b6eded527962"
+    "bundle_hash": "sha256:598c1d7f277107e3257d10783708bfcb58798c6511a4b053abffaea53fbd70e0"
   },
   "stores_raw_data": false,
-  "catalog_hash": "sha256:edb49958a555df1197e7d23b4800506599bf6b83ff49684f75c4a30231664b98"
+  "catalog_hash": "sha256:37a17dc4ca5001f52cca48542f75e8e91931e943eaf6ac13eb636f2b835977ae"
 }

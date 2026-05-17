@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "properties": {
     "schema": {
-      "const": "arc.seedcatalog.split_bundle.v9"
+      "const": "arc.seedcatalog.proof_pack.v9"
     },
     "stores_raw_data": {
       "const": false
@@ -10,10 +10,9 @@
   },
   "required": [
     "schema",
-    "receipt_bundle",
-    "arc_core_handoff_bundle",
+    "split_bundle",
     "stores_raw_data"
   ],
-  "title": "ARC SeedCatalog Split Bundle v9",
+  "title": "ARC SeedCatalog Proof Pack v9",
   "type": "object"
 }
