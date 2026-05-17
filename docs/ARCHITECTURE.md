@@ -1,33 +1,40 @@
-# Architecture
+# ARC-SeedCatalog v0.4 Architecture
 
-ARC-SeedCatalog v0.3 uses a Palantir-style split-bundle approach.
+ARC-SeedCatalog v0.4 is a static split-bundle catalog ingester.
 
-## Bundle flow
+## Flow
 
 ```text
-Flexible JSON input
+Authorized JSON input
+  -> shape detection
   -> volatile normalization
+  -> HMAC seeded entry derivation
+  -> source hash derivation
+  -> category vector derivation
   -> receipt bundle
   -> policy bundle
   -> index bundle
   -> ARC-Core handoff bundle
-  -> Arc-RAR export bundle
-  -> OmniBinary bundle
-  -> validation bundle
+  -> ARC-Core JSONL export
+  -> Arc-RAR manifest
+  -> OmniBinary hash report
+  -> local verification report
 ```
 
-## ARC-Core role
+## Palantir-style split bundle
 
-ARC-Core should ingest only the `arc_core_handoff_bundle` or the full split bundle. It should not ingest raw source/catalog JSON.
+Instead of one mixed database, v0.4 separates responsibility:
 
-## Arc-RAR role
+- Receipt bundle: opaque entry records.
+- Policy bundle: rules and denied raw fields.
+- Adapter report: detected shape and row/source count.
+- Normalize bundle: proof that raw input was volatile.
+- Index bundle: counts/search-safe metadata.
+- ARC-Core handoff: authority-safe registration payload.
+- Arc-RAR manifest: portable proof bundle plan.
+- OmniBinary report: canonical byte/hash discipline.
+- Validation bundle: safety/integrity check summary.
 
-Arc-RAR should package exported proof bundles for portable archive/rollback without raw catalog contents.
+## Zero raw-data doctrine
 
-## OmniBinary role
-
-OmniBinary defines byte-stable canonicalization and hash discipline for every exported bundle.
-
-## Resolver rule
-
-Raw resolver maps can exist only in volatile browser memory while deriving receipts. They are intentionally not exported.
+Input can contain raw fields, but exported bundles must not retain them.

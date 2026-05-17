@@ -1,36 +1,34 @@
 # Validation Report
 
-v0.3.0 package includes:
+v0.4.0 static package includes:
 
 ```text
-static index.html
-flexible JSON normalization
-file upload
-paste ingest
-sorting
-receipt search
-category/source/epoch counts
-receipt bundle
-policy bundle
-normalize bundle
-index bundle
-ARC-Core handoff bundle
-Arc-RAR export bundle
-OmniBinary bundle
-validation bundle
-GitHub Pages workflow
-schemas
+index.html
+src/seedcatalog.js
+style.css
 examples
+schemas
+GitHub Pages workflow
 legal policy
+architecture docs
+ARC-Core handoff docs
+Arc-RAR export docs
+OmniBinary hash report docs
 ```
 
-Safety assertions:
+Feature validation:
 
 ```text
-exports raw titles: false
-exports raw paths: false
-exports raw URLs: false
-exports raw server names: false
-exports media: false
-exports user data: false
+static app: yes
+file upload: yes
+paste input: yes
+flexible shape detection: yes
+volatile normalization: yes
+sorting: yes
+search: yes
+bundle verification: yes
+ARC-Core JSONL export: yes
+Arc-RAR manifest export: yes
+OmniBinary hash report: yes
+raw title/path/url/server export: no
 ```

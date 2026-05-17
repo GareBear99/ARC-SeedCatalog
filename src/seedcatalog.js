@@ -19,8 +19,8 @@ function canon(obj) {
 }
 
 const RULESET = {
-  schema: "arc.seedcatalog.ruleset.v3",
-  version: "0.3.0",
+  schema: "arc.seedcatalog.ruleset.v4",
+  version: "0.4.0",
   architecture: "palantir_arc_core_split_bundle_static",
   allowed_category_prefixes: [
     "media/movie",
@@ -53,6 +53,21 @@ function looksLikeRow(x) {
     ("path" in x || "url" in x || "href" in x || "title" in x || "name" in x || "id" in x || "category" in x || "genre" in x);
 }
 
+function detectShape(doc) {
+  if (Array.isArray(doc)) return "flat_array";
+  if (doc && Array.isArray(doc.servers)) return "servers";
+  if (doc && Array.isArray(doc.sources)) return "sources";
+  if (doc && Array.isArray(doc.data)) return "data";
+  if (doc && Array.isArray(doc.items)) return "items";
+  if (doc && typeof doc === "object") {
+    for (const value of Object.values(doc)) {
+      if (Array.isArray(value)) return "object_map";
+    }
+    if (looksLikeRow(doc)) return "single_object";
+  }
+  return "unknown";
+}
+
 function inferCategory(item, server) {
   const raw = item.category || item.categories || item.genre || item.type || server.category || server.type || "";
   if (Array.isArray(raw)) return String(raw[0] || "catalog/authorized/uncategorized");
@@ -63,11 +78,14 @@ function inferCategory(item, server) {
   if (["show", "series", "tv"].includes(s)) return "media/show/authorized";
   if (s.includes("game")) return "game/homebrew/authorized";
   if (s.includes("asset")) return "asset/internal/authorized";
+  if (s.includes("public")) return "media/public-domain/authorized";
+  if (s.includes("licensed")) return "media/licensed/authorized";
   return `catalog/authorized/${s}`;
 }
 
 function normalizeRows(doc) {
   const rows = [];
+  const shape = detectShape(doc);
 
   const pushRow = (server, item, origin = "unknown") => {
     const category = inferCategory(item, server);
@@ -88,36 +106,21 @@ function normalizeRows(doc) {
 
   if (Array.isArray(doc)) {
     for (const item of doc) pushRow(item, item, "flat_array");
-    return rows;
-  }
-
-  if (doc && Array.isArray(doc.servers)) {
+  } else if (doc && Array.isArray(doc.servers)) {
     for (const server of doc.servers) {
       const items = Array.isArray(server.items) ? server.items : [];
       for (const item of items) pushRow(server, item, "servers");
     }
-    return rows;
-  }
-
-  if (doc && Array.isArray(doc.sources)) {
+  } else if (doc && Array.isArray(doc.sources)) {
     for (const server of doc.sources) {
       const items = Array.isArray(server.items) ? server.items : Array.isArray(server.catalog) ? server.catalog : [];
       for (const item of items) pushRow(server, item, "sources");
     }
-    return rows;
-  }
-
-  if (doc && Array.isArray(doc.data)) {
+  } else if (doc && Array.isArray(doc.data)) {
     for (const item of doc.data) pushRow(item, item, "data");
-    return rows;
-  }
-
-  if (doc && Array.isArray(doc.items)) {
+  } else if (doc && Array.isArray(doc.items)) {
     for (const item of doc.items) pushRow(doc, item, "items");
-    return rows;
-  }
-
-  if (doc && typeof doc === "object") {
+  } else if (doc && typeof doc === "object") {
     for (const [key, value] of Object.entries(doc)) {
       if (Array.isArray(value)) {
         for (const item of value) {
@@ -125,11 +128,10 @@ function normalizeRows(doc) {
         }
       }
     }
+    if (!rows.length && looksLikeRow(doc)) pushRow(doc, doc, "single_object");
   }
 
-  if (!rows.length && looksLikeRow(doc)) pushRow(doc, doc, "single_object");
-
-  return rows;
+  return { rows, shape };
 }
 
 function validCategory(category) {
@@ -156,14 +158,12 @@ async function sourceId(row) {
 async function deriveReceipt(row, seed, epoch, rHash) {
   const category = validCategory(row.category) ? row.category : "catalog/authorized/uncategorized";
   const sid = await sourceId(row);
-
-  // Volatile fields participate in HMAC derivation but are never exported.
   const volatile = `${row.server_id}|${row.volatile_path}|${row.volatile_title}|${row.volatile_quality}|${epoch}`;
   const entry = await hmacSha256Hex(seed, `${sid}|${volatile}`);
   const cat = await hmacSha256Hex(seed, `${category}|ruleset:${rHash}`);
 
   const core = {
-    schema: "arc.seedcatalog.entry_receipt.v3",
+    schema: "arc.seedcatalog.entry_receipt.v4",
     entry_id: `hmac-sha256:${entry}`,
     source_id: `sha256:${sid}`,
     category_vector: `hmac-sha256:${cat}`,
@@ -198,6 +198,7 @@ function sortReceipts(receipts, mode) {
     if (mode === "source") return r.source_id;
     if (mode === "category") return r.category_vector;
     if (mode === "epoch") return r.epoch;
+    if (mode === "entry") return r.entry_id;
     return r.receipt_hash;
   };
   arr.sort((a,b)=>key(a).localeCompare(key(b)));
@@ -210,15 +211,43 @@ function filterReceipts(receipts, query) {
   return receipts.filter(r => canon(r).toLowerCase().includes(q));
 }
 
+async function bundleHash(bundleWithoutHash) {
+  return `sha256:${await sha256Hex(canon(bundleWithoutHash))}`;
+}
+
+async function verifyBundleHash(obj, field = "bundle_hash") {
+  if (!obj || !obj[field]) return { ok: false, reason: "missing hash field" };
+  const claimed = obj[field];
+  const copy = JSON.parse(JSON.stringify(obj));
+  delete copy[field];
+  const actual = await bundleHash(copy);
+  return { ok: claimed === actual, claimed, actual };
+}
+
+async function verifySplitBundle(split) {
+  const checks = {};
+  for (const k of ["receipt_bundle", "policy_bundle", "normalize_bundle", "index_bundle", "arc_core_handoff_bundle", "arc_rar_export_bundle", "omnibinary_bundle", "validation_bundle"]) {
+    checks[k] = await verifyBundleHash(split[k]);
+  }
+  const splitCopy = JSON.parse(JSON.stringify(split));
+  const claimedCatalog = splitCopy.catalog_hash;
+  delete splitCopy.catalog_hash;
+  const actualCatalog = `sha256:${await sha256Hex(canon(splitCopy))}`;
+  checks.catalog = { ok: claimedCatalog === actualCatalog, claimed: claimedCatalog, actual: actualCatalog };
+  return {
+    schema: "arc.seedcatalog.verify_report.v4",
+    ok: Object.values(checks).every(x => x.ok),
+    checks
+  };
+}
+
 async function buildSplitBundles(doc, seed, epoch, options = {}) {
-  const rows = normalizeRows(doc);
+  const normalized = normalizeRows(doc);
+  const rows = normalized.rows;
   const rHash = await rulesetHash();
   const receiptsRaw = [];
 
-  for (const row of rows) {
-    receiptsRaw.push(await deriveReceipt(row, seed, epoch, rHash));
-  }
-
+  for (const row of rows) receiptsRaw.push(await deriveReceipt(row, seed, epoch, rHash));
   const receipts = sortReceipts(receiptsRaw, options.sort || "receipt");
 
   const sourceSet = new Set(receipts.map(r => r.source_id));
@@ -226,8 +255,8 @@ async function buildSplitBundles(doc, seed, epoch, options = {}) {
   const sourceCounts = countBy(receipts, r => r.source_id);
   const epochCounts = countBy(receipts, r => r.epoch);
 
-  const receiptBundle = {
-    schema: "arc.seedcatalog.receipt_bundle.v3",
+  const receiptBundleCore = {
+    schema: "arc.seedcatalog.receipt_bundle.v4",
     bundle_role: "receipt_bundle",
     epoch,
     count: receipts.length,
@@ -238,10 +267,10 @@ async function buildSplitBundles(doc, seed, epoch, options = {}) {
     receipts,
     stores_raw_data: false
   };
-  receiptBundle.bundle_hash = `sha256:${await sha256Hex(canon(receiptBundle))}`;
+  const receiptBundle = { ...receiptBundleCore, bundle_hash: await bundleHash(receiptBundleCore) };
 
-  const policyBundle = {
-    schema: "arc.seedcatalog.policy_bundle.v3",
+  const policyBundleCore = {
+    schema: "arc.seedcatalog.policy_bundle.v4",
     bundle_role: "policy_bundle",
     ruleset: RULESET,
     ruleset_hash: `sha256:${rHash}`,
@@ -249,21 +278,33 @@ async function buildSplitBundles(doc, seed, epoch, options = {}) {
     disallowed_storage: ["titles", "paths", "urls", "server_names", "hostnames", "media", "posters", "descriptions", "user_data"],
     lawful_use_only: true
   };
-  policyBundle.bundle_hash = `sha256:${await sha256Hex(canon(policyBundle))}`;
+  const policyBundle = { ...policyBundleCore, bundle_hash: await bundleHash(policyBundleCore) };
 
-  const normalizeBundle = {
-    schema: "arc.seedcatalog.normalize_bundle.v3",
-    bundle_role: "normalize_bundle",
-    row_count: rows.length,
+  const adapterReportCore = {
+    schema: "arc.seedcatalog.adapter_report.v4",
+    bundle_role: "adapter_report",
+    detected_shape: normalized.shape,
     detected_rows: rows.length,
     detected_sources: sourceSet.size,
-    note: "Rows were normalized in volatile browser memory. Raw row fields are intentionally not exported.",
+    supported_shapes: ["servers", "sources", "data", "items", "flat_array", "object_map", "single_object"],
     stores_raw_data: false
   };
-  normalizeBundle.bundle_hash = `sha256:${await sha256Hex(canon(normalizeBundle))}`;
+  const adapterReport = { ...adapterReportCore, bundle_hash: await bundleHash(adapterReportCore) };
 
-  const indexBundle = {
-    schema: "arc.seedcatalog.index_bundle.v3",
+  const normalizeBundleCore = {
+    schema: "arc.seedcatalog.normalize_bundle.v4",
+    bundle_role: "normalize_bundle",
+    row_count: rows.length,
+    detected_shape: normalized.shape,
+    detected_sources: sourceSet.size,
+    note: "Rows were normalized in volatile browser memory. Raw row fields are intentionally not exported.",
+    adapter_report_hash: adapterReport.bundle_hash,
+    stores_raw_data: false
+  };
+  const normalizeBundle = { ...normalizeBundleCore, bundle_hash: await bundleHash(normalizeBundleCore) };
+
+  const indexBundleCore = {
+    schema: "arc.seedcatalog.index_bundle.v4",
     bundle_role: "index_bundle",
     source_count: sourceSet.size,
     entry_count: receipts.length,
@@ -273,10 +314,24 @@ async function buildSplitBundles(doc, seed, epoch, options = {}) {
     searchable_fields: ["receipt_hash", "entry_id", "source_id", "category_vector", "category_path_hash", "ruleset_hash"],
     stores_raw_data: false
   };
-  indexBundle.bundle_hash = `sha256:${await sha256Hex(canon(indexBundle))}`;
+  const indexBundle = { ...indexBundleCore, bundle_hash: await bundleHash(indexBundleCore) };
 
-  const arcCoreBundle = {
-    schema: "arc.core.seedcatalog_handoff_bundle.v3",
+  const arcCoreRecords = receipts.map(r => ({
+    schema: "arc.core.seedcatalog_registration.v4",
+    source: "arc-seedcatalog",
+    object_type: "seedcatalog_entry_receipt",
+    receipt_hash: r.receipt_hash,
+    entry_id: r.entry_id,
+    source_id: r.source_id,
+    category_vector: r.category_vector,
+    category_path_hash: r.category_path_hash,
+    ruleset_hash: r.ruleset_hash,
+    stores_raw_data: false,
+    authority_policy: "zero-title-zero-url-zero-server-name-zero-user-data"
+  }));
+
+  const arcCoreBundleCore = {
+    schema: "arc.core.seedcatalog_handoff_bundle.v4",
     bundle_role: "arc_core_handoff_bundle",
     object_type: "seedcatalog_receipt_bundle",
     receipt_bundle_hash: receiptBundle.bundle_hash,
@@ -285,56 +340,63 @@ async function buildSplitBundles(doc, seed, epoch, options = {}) {
     ruleset_hash: `sha256:${rHash}`,
     source_count: sourceSet.size,
     entry_count: receipts.length,
+    records: arcCoreRecords,
     stores_raw_data: false,
     authority_policy: "zero-title-zero-url-zero-server-name-zero-user-data",
     suggested_route: "POST /seedcatalog/register-bundle"
   };
-  arcCoreBundle.bundle_hash = `sha256:${await sha256Hex(canon(arcCoreBundle))}`;
+  const arcCoreBundle = { ...arcCoreBundleCore, bundle_hash: await bundleHash(arcCoreBundleCore) };
 
-  const arcRarBundle = {
-    schema: "arc.rar.seedcatalog_export_plan.v3",
-    bundle_role: "arc_rar_export_bundle",
-    include: ["receipt_bundle", "policy_bundle", "index_bundle", "arc_core_handoff_bundle", "omnibinary_bundle"],
+  const arcRarBundleCore = {
+    schema: "arc.rar.seedcatalog_manifest.v4",
+    bundle_role: "arc_rar_manifest",
+    include: ["receipt_bundle", "policy_bundle", "index_bundle", "arc_core_handoff_bundle", "omnibinary_bundle", "validation_bundle", "adapter_report"],
     exclude: ["raw_input_bundle", "resolver_runtime_map", "titles", "paths", "urls", "server_names", "hostnames", "media", "user_data"],
     receipt_bundle_hash: receiptBundle.bundle_hash,
     arc_core_bundle_hash: arcCoreBundle.bundle_hash,
+    policy_bundle_hash: policyBundle.bundle_hash,
     stores_raw_data: false
   };
-  arcRarBundle.bundle_hash = `sha256:${await sha256Hex(canon(arcRarBundle))}`;
+  const arcRarBundle = { ...arcRarBundleCore, bundle_hash: await bundleHash(arcRarBundleCore) };
 
-  const omnibinaryBundle = {
-    schema: "omnibinary.seedcatalog_byte_discipline.v3",
-    bundle_role: "omnibinary_bundle",
+  const omnibinaryBundleCore = {
+    schema: "omnibinary.seedcatalog_hash_report.v4",
+    bundle_role: "omnibinary_hash_report",
     canonicalization: "sorted-key-json-to-utf8-bytes",
     hash_algorithm: "SHA-256",
     hmac_algorithm: "HMAC-SHA-256",
     receipt_bundle_hash: receiptBundle.bundle_hash,
     policy_bundle_hash: policyBundle.bundle_hash,
     index_bundle_hash: indexBundle.bundle_hash,
+    arc_core_bundle_hash: arcCoreBundle.bundle_hash,
+    arc_rar_bundle_hash: arcRarBundle.bundle_hash,
     stores_raw_data: false
   };
-  omnibinaryBundle.bundle_hash = `sha256:${await sha256Hex(canon(omnibinaryBundle))}`;
+  const omnibinaryBundle = { ...omnibinaryBundleCore, bundle_hash: await bundleHash(omnibinaryBundleCore) };
 
-  const validationBundle = {
-    schema: "arc.seedcatalog.validation_bundle.v3",
+  const validationBundleCore = {
+    schema: "arc.seedcatalog.validation_bundle.v4",
     bundle_role: "validation_bundle",
     checks: {
       has_receipts: receipts.length > 0,
       stores_raw_data: false,
       ruleset_hash_present: true,
       arc_core_handoff_present: true,
-      denied_raw_fields_exported: false
+      denied_raw_fields_exported: false,
+      adapter_report_present: true,
+      jsonl_export_available: true
     },
     warning: "Validation checks exported bundles only. It does not certify source legality."
   };
-  validationBundle.bundle_hash = `sha256:${await sha256Hex(canon(validationBundle))}`;
+  const validationBundle = { ...validationBundleCore, bundle_hash: await bundleHash(validationBundleCore) };
 
-  const all = {
-    schema: "arc.seedcatalog.split_bundle.v3",
+  const splitCore = {
+    schema: "arc.seedcatalog.split_bundle.v4",
     created_at: new Date().toISOString(),
     architecture: "palantir_arc_core_split_bundle_static",
     receipt_bundle: receiptBundle,
     policy_bundle: policyBundle,
+    adapter_report: adapterReport,
     normalize_bundle: normalizeBundle,
     index_bundle: indexBundle,
     arc_core_handoff_bundle: arcCoreBundle,
@@ -343,17 +405,24 @@ async function buildSplitBundles(doc, seed, epoch, options = {}) {
     validation_bundle: validationBundle,
     stores_raw_data: false
   };
-  all.catalog_hash = `sha256:${await sha256Hex(canon(all))}`;
-  return all;
+  return { ...splitCore, catalog_hash: `sha256:${await sha256Hex(canon(splitCore))}` };
+}
+
+function arcCoreJSONL(split) {
+  return split.arc_core_handoff_bundle.records.map(r => JSON.stringify(r)).join("\n") + "\n";
 }
 
 window.ARCSeedCatalog = {
   RULESET,
   RAW_FIELD_DENYLIST,
+  detectShape,
   normalizeRows,
   buildSplitBundles,
+  verifySplitBundle,
+  verifyBundleHash,
   sortReceipts,
   filterReceipts,
+  arcCoreJSONL,
   canon,
   sha256Hex,
   hmacSha256Hex

@@ -1,6 +1,6 @@
 {
   "epoch": "2026-05-16",
-  "schema": "arc.seedcatalog.flex_server_catalog.v3",
+  "schema": "arc.seedcatalog.flex_server_catalog.v4",
   "servers": [
     {
       "capabilities": [
@@ -25,19 +25,6 @@
       "region": "CA",
       "server_id": "public-domain-node-a",
       "server_type": "authorized_catalog"
-    },
-    {
-      "items": [
-        {
-          "category": "asset/internal/training-video",
-          "path": "/training/arc-runtime-001",
-          "title": "Temporary Internal Training Video"
-        }
-      ],
-      "legal_basis": "owned_internal_media",
-      "region": "LOCAL",
-      "server_id": "internal-training-library",
-      "server_type": "internal_library"
     }
   ]
 }

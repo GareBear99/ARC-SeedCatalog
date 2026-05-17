@@ -1,25 +1,29 @@
 # ARC-Core Handoff
 
-The safe payload is:
+Use either:
 
 ```text
 arc_core_handoff_bundle
 ```
 
-It contains:
+or:
 
-- receipt bundle hash
-- policy bundle hash
-- index bundle hash
-- ruleset hash
-- source count
-- entry count
-- authority policy
-
-It does not contain raw titles, paths, URLs, server names, hostnames, media, or user data.
+```text
+arc-core-seedcatalog-records-v0.4.jsonl
+```
 
 Suggested route:
 
 ```text
 POST /seedcatalog/register-bundle
 ```
+
+Each JSONL record includes:
+
+- receipt hash
+- entry id
+- source id
+- category vector
+- category path hash
+- ruleset hash
+- no-raw-data policy flag

@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ARC-SeedCatalog v0.3 — Split Bundle</title>
+  <title>ARC-SeedCatalog v0.4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Static Palantir-style ARC-Core split-bundle source/catalog JSON ingestion.">
+  <meta name="description" content="Static Palantir ARC-Core split-bundle catalog ingester for authorized source JSON.">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main>
   <header>
-    <div class="badge">ARC-SeedCatalog v0.3 · Palantir ARC-Core split bundle · static</div>
-    <h1>Ingest authorized server/source JSON. Export ARC-safe split bundles.</h1>
-    <p class="lede">A static browser tool for flexible catalog JSON ingestion, opaque seeded categorization, receipt generation, ARC-Core handoff, Arc-RAR export planning, and OmniBinary proof discipline.</p>
-    <div class="notice">For lawful/authorized/public-domain/licensed/internal catalogs only. Exported bundles do not store raw server names, titles, paths, URLs, media, descriptions, posters, or user data.</div>
+    <div class="badge">ARC-SeedCatalog v0.4 · complete static split-bundle release</div>
+    <h1>Ingest authorized source JSON. Export ARC-Core, Arc-RAR, and OmniBinary proof bundles.</h1>
+    <p class="lede">A no-backend GitHub Pages tool that converts flexible server/source/catalog JSON into opaque seeded receipts, category vectors, ARC-Core registration JSONL, Arc-RAR manifests, and OmniBinary hash reports.</p>
+    <div class="notice">For lawful/authorized/public-domain/licensed/internal catalogs only. Exported bundles do not store raw server names, titles, paths, URLs, hostnames, media, descriptions, posters, or user data.</div>
   </header>
+
   <section class="grid">
     <div class="card">
       <h2>Input</h2>
@@ -23,44 +24,51 @@
         <div><label>Epoch</label><input id="epoch" value="2026-05-16"></div>
       </div>
       <div class="row">
-        <div><label>Sort receipts by</label><select id="sort"><option value="receipt">receipt hash</option><option value="source">source</option><option value="category">category vector</option><option value="epoch">epoch</option></select></div>
-        <div><label>Search output</label><input id="search" placeholder="hash/category/source search"></div>
+        <div><label>Sort receipts by</label><select id="sort"><option value="receipt">receipt hash</option><option value="source">source</option><option value="category">category vector</option><option value="epoch">epoch</option><option value="entry">entry id</option></select></div>
+        <div><label>Search receipt bundle</label><input id="search" placeholder="hash/category/source search"></div>
       </div>
       <label>Upload JSON</label><input id="file" type="file" accept=".json,application/json">
       <label>Paste JSON</label><textarea id="jsonInput"></textarea>
       <button id="ingest">Build split bundles</button>
-      <button class="secondary" id="loadExample">Load canonical example</button>
-      <button class="secondary" id="loadFlat">Load flat example</button>
-      <button class="secondary" id="downloadAll">Download all</button>
-      <button class="secondary" id="downloadArcCore">ARC-Core only</button>
-      <button class="secondary" id="downloadReceipts">Receipts only</button>
+      <button class="secondary" id="verify">Verify current bundles</button>
+      <button class="secondary" id="loadCanonical">Canonical</button>
+      <button class="secondary" id="loadFlat">Flat</button>
+      <button class="secondary" id="loadObject">Object map</button>
+      <button class="secondary" id="downloadAll">All bundles</button>
+      <button class="secondary" id="downloadArcCore">ARC-Core bundle</button>
+      <button class="secondary" id="downloadJSONL">ARC-Core JSONL</button>
+      <button class="secondary" id="downloadArcRar">Arc-RAR manifest</button>
     </div>
+
     <div class="card">
       <h2>Output</h2>
-      <p class="good">Only opaque hashes/vectors/receipts and split-bundle metadata are exported.</p>
+      <p class="good">Only opaque hashes/vectors/receipts and proof metadata are exported.</p>
       <div class="row">
         <div><label>View bundle</label><select id="view">
           <option value="all">All bundles</option>
           <option value="receipt_bundle">Receipt bundle</option>
           <option value="policy_bundle">Policy bundle</option>
+          <option value="adapter_report">Adapter report</option>
           <option value="normalize_bundle">Normalize bundle</option>
           <option value="index_bundle">Index bundle</option>
-          <option value="arc_core_handoff_bundle">ARC-Core handoff bundle</option>
-          <option value="arc_rar_export_bundle">Arc-RAR export bundle</option>
-          <option value="omnibinary_bundle">OmniBinary bundle</option>
+          <option value="arc_core_handoff_bundle">ARC-Core handoff</option>
+          <option value="arc_core_jsonl">ARC-Core JSONL</option>
+          <option value="arc_rar_export_bundle">Arc-RAR manifest</option>
+          <option value="omnibinary_bundle">OmniBinary hash report</option>
           <option value="validation_bundle">Validation bundle</option>
+          <option value="verify_report">Verify report</option>
         </select></div>
         <div><label>Status</label><input id="status" readonly value="idle"></div>
       </div>
       <pre id="output">No ingest yet.</pre>
-      <p class="mini">Search filters receipt bundle view only. Other bundle views remain exact exports.</p>
+      <p class="mini">Search filters receipt bundle view only. Verify recomputes bundle hashes locally.</p>
     </div>
   </section>
 </main>
 <script src="./src/seedcatalog.js"></script>
 <script>
 const canonicalExample = {
-  schema:"arc.seedcatalog.flex_server_catalog.v3",
+  schema:"arc.seedcatalog.flex_server_catalog.v4",
   epoch:"2026-05-16",
   servers:[
     {server_id:"public-domain-node-a",server_type:"authorized_catalog",region:"CA",legal_basis:"public_domain_or_licensed",capabilities:["metadata_lookup"],items:[
@@ -77,10 +85,16 @@ const flatExample = [
   {server:"licensed-node-b",path:"/item/002",category:"media/show/licensed/animated",title:"Temporary Show"},
   {source:"homebrew-node",id:"rom-test-001",category:"game/homebrew/test",name:"Temporary Homebrew Test"}
 ];
+const objectExample = {
+  node_a:[{path:"/a/001",category:"media/public-domain/archive"},{path:"/a/002",category:"media/public-domain/archive"}],
+  node_b:[{id:"b001",category:"asset/internal/demo"}]
+};
 const input=document.getElementById("jsonInput"), output=document.getElementById("output"), view=document.getElementById("view"), statusEl=document.getElementById("status");
-let last=null;
+let last=null, verifyReport=null;
 function load(obj){input.value=JSON.stringify(obj,null,2)}
 function currentViewObject(){
+  if(view.value==="arc_core_jsonl") return last ? ARCSeedCatalog.arcCoreJSONL(last) : null;
+  if(view.value==="verify_report") return verifyReport || {message:"No verify report yet."};
   if(!last) return null;
   const k=view.value;
   if(k==="all") return last;
@@ -91,17 +105,41 @@ function currentViewObject(){
   }
   return last[k];
 }
-function render(){ const obj=currentViewObject(); output.textContent=obj?JSON.stringify(obj,null,2):"No ingest yet."; }
-function download(name,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function render(){
+  const obj=currentViewObject();
+  if(obj == null){ output.textContent="No ingest yet."; return; }
+  output.textContent=typeof obj==="string" ? obj : JSON.stringify(obj,null,2);
+}
+function download(name,obj,type="application/json"){
+  const body = typeof obj==="string" ? obj : JSON.stringify(obj,null,2);
+  const blob=new Blob([body],{type}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download=name; a.click(); URL.revokeObjectURL(a.href);
+}
 load(canonicalExample);
-document.getElementById("loadExample").onclick=()=>load(canonicalExample);
+document.getElementById("loadCanonical").onclick=()=>load(canonicalExample);
 document.getElementById("loadFlat").onclick=()=>load(flatExample);
+document.getElementById("loadObject").onclick=()=>load(objectExample);
 document.getElementById("file").onchange=async e=>{const f=e.target.files[0]; if(f) input.value=await f.text();};
-document.getElementById("ingest").onclick=async()=>{try{statusEl.value="building...";last=await ARCSeedCatalog.buildSplitBundles(JSON.parse(input.value),document.getElementById("seed").value,document.getElementById("epoch").value,{sort:document.getElementById("sort").value});statusEl.value=`ok: ${last.receipt_bundle.count} entries`;render()}catch(e){statusEl.value="error";output.textContent="ERROR: "+e.message}};
+document.getElementById("ingest").onclick=async()=>{
+  try{
+    statusEl.value="building...";
+    verifyReport=null;
+    last=await ARCSeedCatalog.buildSplitBundles(JSON.parse(input.value),document.getElementById("seed").value,document.getElementById("epoch").value,{sort:document.getElementById("sort").value});
+    statusEl.value=`ok: ${last.receipt_bundle.count} entries · ${last.adapter_report.detected_shape}`;
+    render();
+  }catch(e){statusEl.value="error";output.textContent="ERROR: "+e.message}
+};
+document.getElementById("verify").onclick=async()=>{
+  if(!last){output.textContent="No bundle to verify.";return}
+  verifyReport=await ARCSeedCatalog.verifySplitBundle(last);
+  statusEl.value=verifyReport.ok ? "verify ok" : "verify failed";
+  view.value="verify_report"; render();
+};
 view.onchange=render; document.getElementById("search").oninput=render;
-document.getElementById("downloadAll").onclick=()=>{if(last)download("arc-seedcatalog-split-bundles-v0.3.json",last)};
-document.getElementById("downloadArcCore").onclick=()=>{if(last)download("arc-core-seedcatalog-handoff-v0.3.json",last.arc_core_handoff_bundle)};
-document.getElementById("downloadReceipts").onclick=()=>{if(last)download("arc-seedcatalog-receipt-bundle-v0.3.json",last.receipt_bundle)};
+document.getElementById("downloadAll").onclick=()=>{if(last)download("arc-seedcatalog-split-bundles-v0.4.json",last)};
+document.getElementById("downloadArcCore").onclick=()=>{if(last)download("arc-core-seedcatalog-handoff-v0.4.json",last.arc_core_handoff_bundle)};
+document.getElementById("downloadJSONL").onclick=()=>{if(last)download("arc-core-seedcatalog-records-v0.4.jsonl",ARCSeedCatalog.arcCoreJSONL(last),"application/x-ndjson")};
+document.getElementById("downloadArcRar").onclick=()=>{if(last)download("arc-rar-seedcatalog-manifest-v0.4.json",last.arc_rar_export_bundle)};
 </script>
 </body>
 </html>

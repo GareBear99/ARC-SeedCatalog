@@ -1,14 +1,14 @@
 # Legal Policy
 
-ARC-SeedCatalog is for lawful catalog/source ingestion.
+ARC-SeedCatalog is source-shape-flexible but policy-restricted.
 
 Allowed:
 
 - public-domain catalogs
 - licensed source APIs
-- owned/internal media inventories
+- internal/owned media inventories
 - homebrew/demo catalogs
-- synthetic test catalogs
+- synthetic test feeds
 - authorized dataset indexes
 
 Disallowed:
@@ -16,8 +16,8 @@ Disallowed:
 - piracy-site mirroring
 - unlicensed streaming link routing
 - hidden host/server preservation
+- stream URL export
 - access-control bypass
-- raw stream URL export
 - user tracking without consent
 
-The static demo intentionally discards raw names, paths, URLs, hostnames, descriptions, media assets, and user data from exported bundles.
+The exported bundles intentionally do not retain raw names, URLs, server identifiers, media paths, or user data.
