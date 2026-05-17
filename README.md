@@ -1,81 +1,97 @@
-# ARC-SeedCatalog v0.4.0
+# ARC-SeedCatalog v0.5.0
 
-**ARC-SeedCatalog** is a static, GitHub Pages-ready, Palantir-style ARC-Core split-bundle catalog ingester.
+**ARC-SeedCatalog** is a static, GitHub Pages-ready, Palantir-style ARC-Core split-bundle catalog ingester for authorized server/source JSON.
 
-It ingests flexible authorized server/source/catalog JSON, normalizes the rows in volatile browser memory, and exports ARC-safe proof bundles without storing raw titles, server names, URLs, paths, media, descriptions, posters, or user data.
+It is designed to ingest flexible catalogs, normalize them in volatile browser memory, and export ARC-safe proof bundles without storing raw titles, URLs, paths, server names, hostnames, descriptions, posters, media, or user data.
 
-## v0.4.0 capability
+## v0.5.0 focus
 
-- Static GitHub Pages app
-- No backend
-- No database
-- No build step
-- File upload and paste input
-- Flexible JSON shape detection
-- Canonical servers format
-- Sources/catalog format
-- Flat rows format
-- Wrapped `data` format
-- Object-map format
-- Adapter report
-- Sorting
-- Receipt search
-- Category/source/epoch counts
-- Local bundle integrity verification
-- Import/export roundtrip verification
-- Receipt bundle export
-- Policy bundle export
-- Index bundle export
-- ARC-Core handoff export
-- ARC-Core JSONL registration export
-- Arc-RAR manifest export
-- OmniBinary hash report export
-- Validation bundle export
-- Complete docs and schemas
+v0.5 moves the project from a static proof demo into a repo-ready ARC module foundation.
 
-## Split-bundle model
+Added:
+
+- adapter profiles
+- category remap rules
+- UI tab structure
+- adapter preview
+- category preview
+- ARC-Core route stubs
+- CLI companion scaffold
+- Arc-RAR proof-pack template
+- OmniBinary byte/hash docs
+- schemas for adapter profiles and category maps
+- stronger GitHub Pages/repo docs
+
+## Core architecture
 
 ```text
-Input JSON
+Authorized JSON input
+  -> adapter profile / auto-detection
   -> volatile normalization
+  -> category remap
+  -> HMAC seeded entry IDs
+  -> source hashes
+  -> category vectors
   -> receipt bundle
   -> policy bundle
   -> index bundle
   -> ARC-Core handoff bundle
-  -> ARC-Core JSONL registration export
+  -> ARC-Core JSONL records
   -> Arc-RAR manifest
-  -> OmniBinary canonical hash report
-  -> validation bundle
+  -> OmniBinary hash report
+  -> validation report
 ```
 
-## What is stored
+## What exported bundles store
 
-Only opaque references:
-
-- source IDs
 - entry IDs
+- source IDs
 - category vectors
 - category path hashes
-- ruleset hashes
 - receipt hashes
 - bundle hashes
-- counts and proof metadata
+- policy metadata
+- counts
+- ARC-Core registration records
 
-## What is not stored
+## What exported bundles do not store
 
-- titles
-- paths
+- raw titles
+- raw paths
+- raw URLs
 - raw server names
 - hostnames
-- URLs
-- stream links
 - descriptions
 - posters
 - media files
 - user data
+- raw input JSON
 
-## Legal boundary
+## Use cases
 
-Use only for authorized, public-domain, licensed, internal, owned, homebrew, or synthetic catalogs.
+- authorized media catalog indexing
+- public-domain catalog categorization
+- internal asset library proof
+- homebrew/game catalog indexing
+- dataset catalog proof
+- ARC-Core authority registration
+- Arc-RAR portable proof bundles
+- OmniBinary hash verification
 
-Do not use it to mirror piracy sites, route unauthorized streams, preserve hidden host lists, or bypass access controls.
+## Run
+
+Open:
+
+```text
+index.html
+```
+
+or deploy to GitHub Pages.
+
+## CLI scaffold
+
+```bash
+python cli/arc_seedcatalog/cli.py ingest examples/catalogs/canonical_servers.example.json --seed local-dev --epoch 2026-05-16
+```
+
+The CLI scaffold mirrors the browser proof flow for future terminal automation.

@@ -1,6 +1,6 @@
 # ARC-Core Handoff
 
-Use either:
+Use:
 
 ```text
 arc_core_handoff_bundle
@@ -9,21 +9,19 @@ arc_core_handoff_bundle
 or:
 
 ```text
-arc-core-seedcatalog-records-v0.4.jsonl
+arc-core-seedcatalog-records-v0.5.jsonl
 ```
 
-Suggested route:
+ARC-Core should store only:
 
-```text
-POST /seedcatalog/register-bundle
-```
+- receipt_hash
+- entry_id
+- source_id
+- category_vector
+- category_path_hash
+- ruleset_hash
+- category_map_hash
+- adapter_profile_hash
+- policy status
 
-Each JSONL record includes:
-
-- receipt hash
-- entry id
-- source id
-- category vector
-- category path hash
-- ruleset hash
-- no-raw-data policy flag
+ARC-Core should never store raw titles, paths, URLs, server names, hostnames, media, or user data.

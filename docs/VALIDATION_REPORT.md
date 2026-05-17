@@ -1,34 +1,30 @@
 # Validation Report
 
-v0.4.0 static package includes:
+v0.5.0 includes:
 
 ```text
-index.html
-src/seedcatalog.js
-style.css
-examples
-schemas
+static UI
+adapter profiles
+category maps
+split bundles
+ARC-Core JSONL export
+Arc-RAR proof pack export
+OmniBinary hash report
+CLI scaffold
+ARC-Core route stubs
 GitHub Pages workflow
-legal policy
-architecture docs
-ARC-Core handoff docs
-Arc-RAR export docs
-OmniBinary hash report docs
+schemas
+examples
+docs
 ```
 
-Feature validation:
+Safety assertions:
 
 ```text
-static app: yes
-file upload: yes
-paste input: yes
-flexible shape detection: yes
-volatile normalization: yes
-sorting: yes
-search: yes
-bundle verification: yes
-ARC-Core JSONL export: yes
-Arc-RAR manifest export: yes
-OmniBinary hash report: yes
-raw title/path/url/server export: no
+raw title export: false
+raw path export: false
+raw URL export: false
+raw server name export: false
+raw media export: false
+raw user data export: false
 ```

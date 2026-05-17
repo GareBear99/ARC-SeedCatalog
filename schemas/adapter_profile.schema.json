@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "export_raw_fields": {
+      "const": false
+    },
+    "field_map": {
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "schema": {
+      "const": "arc.seedcatalog.adapter_profile.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "name",
+    "field_map",
+    "export_raw_fields"
+  ],
+  "title": "ARC SeedCatalog Adapter Profile",
+  "type": "object"
+}

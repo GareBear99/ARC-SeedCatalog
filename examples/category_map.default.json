@@ -1,0 +1,19 @@
+{
+  "fallback_category": "catalog/authorized/uncategorized",
+  "mappings": {
+    "asset": "asset/internal/authorized",
+    "film": "media/movie/authorized",
+    "game": "game/homebrew/authorized",
+    "homebrew": "game/homebrew/authorized",
+    "internal": "asset/internal/authorized",
+    "licensed": "media/licensed/authorized",
+    "movie": "media/movie/authorized",
+    "public": "media/public-domain/authorized",
+    "public-domain": "media/public-domain/authorized",
+    "series": "media/show/authorized",
+    "show": "media/show/authorized",
+    "tv": "media/show/authorized"
+  },
+  "schema": "arc.seedcatalog.category_map.v1",
+  "version": "0.5.0"
+}

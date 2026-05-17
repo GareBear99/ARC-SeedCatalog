@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "fallback_category": {
+      "type": "string"
+    },
+    "mappings": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "arc.seedcatalog.category_map.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "fallback_category",
+    "mappings"
+  ],
+  "title": "ARC SeedCatalog Category Map",
+  "type": "object"
+}
