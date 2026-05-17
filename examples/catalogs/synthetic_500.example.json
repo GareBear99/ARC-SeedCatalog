@@ -1,0 +1,2704 @@
+{
+  "servers": [
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/0/0",
+          "title": "Temporary 0-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/0/1",
+          "title": "Temporary 0-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/0/2",
+          "title": "Temporary 0-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/0/3",
+          "title": "Temporary 0-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/0/4",
+          "title": "Temporary 0-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/0/5",
+          "title": "Temporary 0-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/0/6",
+          "title": "Temporary 0-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/0/7",
+          "title": "Temporary 0-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/0/8",
+          "title": "Temporary 0-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/0/9",
+          "title": "Temporary 0-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/0/10",
+          "title": "Temporary 0-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/0/11",
+          "title": "Temporary 0-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/0/12",
+          "title": "Temporary 0-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/0/13",
+          "title": "Temporary 0-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/0/14",
+          "title": "Temporary 0-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/0/15",
+          "title": "Temporary 0-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/0/16",
+          "title": "Temporary 0-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/0/17",
+          "title": "Temporary 0-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/0/18",
+          "title": "Temporary 0-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/0/19",
+          "title": "Temporary 0-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-0",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/1/0",
+          "title": "Temporary 1-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/1/1",
+          "title": "Temporary 1-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/1/2",
+          "title": "Temporary 1-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/1/3",
+          "title": "Temporary 1-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/1/4",
+          "title": "Temporary 1-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/1/5",
+          "title": "Temporary 1-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/1/6",
+          "title": "Temporary 1-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/1/7",
+          "title": "Temporary 1-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/1/8",
+          "title": "Temporary 1-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/1/9",
+          "title": "Temporary 1-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/1/10",
+          "title": "Temporary 1-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/1/11",
+          "title": "Temporary 1-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/1/12",
+          "title": "Temporary 1-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/1/13",
+          "title": "Temporary 1-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/1/14",
+          "title": "Temporary 1-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/1/15",
+          "title": "Temporary 1-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/1/16",
+          "title": "Temporary 1-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/1/17",
+          "title": "Temporary 1-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/1/18",
+          "title": "Temporary 1-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/1/19",
+          "title": "Temporary 1-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-1",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/2/0",
+          "title": "Temporary 2-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/2/1",
+          "title": "Temporary 2-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/2/2",
+          "title": "Temporary 2-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/2/3",
+          "title": "Temporary 2-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/2/4",
+          "title": "Temporary 2-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/2/5",
+          "title": "Temporary 2-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/2/6",
+          "title": "Temporary 2-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/2/7",
+          "title": "Temporary 2-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/2/8",
+          "title": "Temporary 2-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/2/9",
+          "title": "Temporary 2-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/2/10",
+          "title": "Temporary 2-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/2/11",
+          "title": "Temporary 2-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/2/12",
+          "title": "Temporary 2-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/2/13",
+          "title": "Temporary 2-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/2/14",
+          "title": "Temporary 2-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/2/15",
+          "title": "Temporary 2-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/2/16",
+          "title": "Temporary 2-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/2/17",
+          "title": "Temporary 2-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/2/18",
+          "title": "Temporary 2-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/2/19",
+          "title": "Temporary 2-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-2",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/3/0",
+          "title": "Temporary 3-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/3/1",
+          "title": "Temporary 3-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/3/2",
+          "title": "Temporary 3-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/3/3",
+          "title": "Temporary 3-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/3/4",
+          "title": "Temporary 3-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/3/5",
+          "title": "Temporary 3-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/3/6",
+          "title": "Temporary 3-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/3/7",
+          "title": "Temporary 3-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/3/8",
+          "title": "Temporary 3-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/3/9",
+          "title": "Temporary 3-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/3/10",
+          "title": "Temporary 3-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/3/11",
+          "title": "Temporary 3-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/3/12",
+          "title": "Temporary 3-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/3/13",
+          "title": "Temporary 3-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/3/14",
+          "title": "Temporary 3-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/3/15",
+          "title": "Temporary 3-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/3/16",
+          "title": "Temporary 3-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/3/17",
+          "title": "Temporary 3-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/3/18",
+          "title": "Temporary 3-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/3/19",
+          "title": "Temporary 3-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-3",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/4/0",
+          "title": "Temporary 4-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/4/1",
+          "title": "Temporary 4-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/4/2",
+          "title": "Temporary 4-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/4/3",
+          "title": "Temporary 4-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/4/4",
+          "title": "Temporary 4-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/4/5",
+          "title": "Temporary 4-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/4/6",
+          "title": "Temporary 4-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/4/7",
+          "title": "Temporary 4-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/4/8",
+          "title": "Temporary 4-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/4/9",
+          "title": "Temporary 4-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/4/10",
+          "title": "Temporary 4-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/4/11",
+          "title": "Temporary 4-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/4/12",
+          "title": "Temporary 4-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/4/13",
+          "title": "Temporary 4-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/4/14",
+          "title": "Temporary 4-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/4/15",
+          "title": "Temporary 4-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/4/16",
+          "title": "Temporary 4-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/4/17",
+          "title": "Temporary 4-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/4/18",
+          "title": "Temporary 4-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/4/19",
+          "title": "Temporary 4-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-4",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/5/0",
+          "title": "Temporary 5-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/5/1",
+          "title": "Temporary 5-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/5/2",
+          "title": "Temporary 5-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/5/3",
+          "title": "Temporary 5-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/5/4",
+          "title": "Temporary 5-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/5/5",
+          "title": "Temporary 5-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/5/6",
+          "title": "Temporary 5-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/5/7",
+          "title": "Temporary 5-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/5/8",
+          "title": "Temporary 5-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/5/9",
+          "title": "Temporary 5-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/5/10",
+          "title": "Temporary 5-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/5/11",
+          "title": "Temporary 5-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/5/12",
+          "title": "Temporary 5-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/5/13",
+          "title": "Temporary 5-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/5/14",
+          "title": "Temporary 5-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/5/15",
+          "title": "Temporary 5-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/5/16",
+          "title": "Temporary 5-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/5/17",
+          "title": "Temporary 5-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/5/18",
+          "title": "Temporary 5-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/5/19",
+          "title": "Temporary 5-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-5",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/6/0",
+          "title": "Temporary 6-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/6/1",
+          "title": "Temporary 6-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/6/2",
+          "title": "Temporary 6-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/6/3",
+          "title": "Temporary 6-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/6/4",
+          "title": "Temporary 6-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/6/5",
+          "title": "Temporary 6-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/6/6",
+          "title": "Temporary 6-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/6/7",
+          "title": "Temporary 6-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/6/8",
+          "title": "Temporary 6-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/6/9",
+          "title": "Temporary 6-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/6/10",
+          "title": "Temporary 6-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/6/11",
+          "title": "Temporary 6-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/6/12",
+          "title": "Temporary 6-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/6/13",
+          "title": "Temporary 6-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/6/14",
+          "title": "Temporary 6-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/6/15",
+          "title": "Temporary 6-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/6/16",
+          "title": "Temporary 6-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/6/17",
+          "title": "Temporary 6-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/6/18",
+          "title": "Temporary 6-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/6/19",
+          "title": "Temporary 6-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-6",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/7/0",
+          "title": "Temporary 7-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/7/1",
+          "title": "Temporary 7-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/7/2",
+          "title": "Temporary 7-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/7/3",
+          "title": "Temporary 7-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/7/4",
+          "title": "Temporary 7-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/7/5",
+          "title": "Temporary 7-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/7/6",
+          "title": "Temporary 7-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/7/7",
+          "title": "Temporary 7-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/7/8",
+          "title": "Temporary 7-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/7/9",
+          "title": "Temporary 7-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/7/10",
+          "title": "Temporary 7-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/7/11",
+          "title": "Temporary 7-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/7/12",
+          "title": "Temporary 7-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/7/13",
+          "title": "Temporary 7-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/7/14",
+          "title": "Temporary 7-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/7/15",
+          "title": "Temporary 7-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/7/16",
+          "title": "Temporary 7-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/7/17",
+          "title": "Temporary 7-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/7/18",
+          "title": "Temporary 7-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/7/19",
+          "title": "Temporary 7-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-7",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/8/0",
+          "title": "Temporary 8-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/8/1",
+          "title": "Temporary 8-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/8/2",
+          "title": "Temporary 8-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/8/3",
+          "title": "Temporary 8-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/8/4",
+          "title": "Temporary 8-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/8/5",
+          "title": "Temporary 8-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/8/6",
+          "title": "Temporary 8-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/8/7",
+          "title": "Temporary 8-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/8/8",
+          "title": "Temporary 8-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/8/9",
+          "title": "Temporary 8-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/8/10",
+          "title": "Temporary 8-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/8/11",
+          "title": "Temporary 8-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/8/12",
+          "title": "Temporary 8-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/8/13",
+          "title": "Temporary 8-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/8/14",
+          "title": "Temporary 8-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/8/15",
+          "title": "Temporary 8-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/8/16",
+          "title": "Temporary 8-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/8/17",
+          "title": "Temporary 8-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/8/18",
+          "title": "Temporary 8-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/8/19",
+          "title": "Temporary 8-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-8",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/9/0",
+          "title": "Temporary 9-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/9/1",
+          "title": "Temporary 9-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/9/2",
+          "title": "Temporary 9-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/9/3",
+          "title": "Temporary 9-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/9/4",
+          "title": "Temporary 9-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/9/5",
+          "title": "Temporary 9-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/9/6",
+          "title": "Temporary 9-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/9/7",
+          "title": "Temporary 9-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/9/8",
+          "title": "Temporary 9-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/9/9",
+          "title": "Temporary 9-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/9/10",
+          "title": "Temporary 9-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/9/11",
+          "title": "Temporary 9-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/9/12",
+          "title": "Temporary 9-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/9/13",
+          "title": "Temporary 9-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/9/14",
+          "title": "Temporary 9-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/9/15",
+          "title": "Temporary 9-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/9/16",
+          "title": "Temporary 9-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/9/17",
+          "title": "Temporary 9-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/9/18",
+          "title": "Temporary 9-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/9/19",
+          "title": "Temporary 9-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-9",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/10/0",
+          "title": "Temporary 10-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/10/1",
+          "title": "Temporary 10-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/10/2",
+          "title": "Temporary 10-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/10/3",
+          "title": "Temporary 10-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/10/4",
+          "title": "Temporary 10-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/10/5",
+          "title": "Temporary 10-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/10/6",
+          "title": "Temporary 10-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/10/7",
+          "title": "Temporary 10-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/10/8",
+          "title": "Temporary 10-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/10/9",
+          "title": "Temporary 10-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/10/10",
+          "title": "Temporary 10-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/10/11",
+          "title": "Temporary 10-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/10/12",
+          "title": "Temporary 10-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/10/13",
+          "title": "Temporary 10-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/10/14",
+          "title": "Temporary 10-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/10/15",
+          "title": "Temporary 10-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/10/16",
+          "title": "Temporary 10-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/10/17",
+          "title": "Temporary 10-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/10/18",
+          "title": "Temporary 10-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/10/19",
+          "title": "Temporary 10-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-0",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/11/0",
+          "title": "Temporary 11-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/11/1",
+          "title": "Temporary 11-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/11/2",
+          "title": "Temporary 11-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/11/3",
+          "title": "Temporary 11-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/11/4",
+          "title": "Temporary 11-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/11/5",
+          "title": "Temporary 11-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/11/6",
+          "title": "Temporary 11-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/11/7",
+          "title": "Temporary 11-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/11/8",
+          "title": "Temporary 11-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/11/9",
+          "title": "Temporary 11-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/11/10",
+          "title": "Temporary 11-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/11/11",
+          "title": "Temporary 11-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/11/12",
+          "title": "Temporary 11-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/11/13",
+          "title": "Temporary 11-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/11/14",
+          "title": "Temporary 11-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/11/15",
+          "title": "Temporary 11-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/11/16",
+          "title": "Temporary 11-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/11/17",
+          "title": "Temporary 11-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/11/18",
+          "title": "Temporary 11-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/11/19",
+          "title": "Temporary 11-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-1",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/12/0",
+          "title": "Temporary 12-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/12/1",
+          "title": "Temporary 12-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/12/2",
+          "title": "Temporary 12-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/12/3",
+          "title": "Temporary 12-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/12/4",
+          "title": "Temporary 12-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/12/5",
+          "title": "Temporary 12-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/12/6",
+          "title": "Temporary 12-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/12/7",
+          "title": "Temporary 12-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/12/8",
+          "title": "Temporary 12-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/12/9",
+          "title": "Temporary 12-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/12/10",
+          "title": "Temporary 12-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/12/11",
+          "title": "Temporary 12-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/12/12",
+          "title": "Temporary 12-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/12/13",
+          "title": "Temporary 12-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/12/14",
+          "title": "Temporary 12-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/12/15",
+          "title": "Temporary 12-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/12/16",
+          "title": "Temporary 12-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/12/17",
+          "title": "Temporary 12-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/12/18",
+          "title": "Temporary 12-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/12/19",
+          "title": "Temporary 12-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-2",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/13/0",
+          "title": "Temporary 13-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/13/1",
+          "title": "Temporary 13-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/13/2",
+          "title": "Temporary 13-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/13/3",
+          "title": "Temporary 13-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/13/4",
+          "title": "Temporary 13-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/13/5",
+          "title": "Temporary 13-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/13/6",
+          "title": "Temporary 13-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/13/7",
+          "title": "Temporary 13-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/13/8",
+          "title": "Temporary 13-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/13/9",
+          "title": "Temporary 13-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/13/10",
+          "title": "Temporary 13-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/13/11",
+          "title": "Temporary 13-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/13/12",
+          "title": "Temporary 13-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/13/13",
+          "title": "Temporary 13-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/13/14",
+          "title": "Temporary 13-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/13/15",
+          "title": "Temporary 13-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/13/16",
+          "title": "Temporary 13-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/13/17",
+          "title": "Temporary 13-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/13/18",
+          "title": "Temporary 13-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/13/19",
+          "title": "Temporary 13-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-3",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/14/0",
+          "title": "Temporary 14-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/14/1",
+          "title": "Temporary 14-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/14/2",
+          "title": "Temporary 14-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/14/3",
+          "title": "Temporary 14-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/14/4",
+          "title": "Temporary 14-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/14/5",
+          "title": "Temporary 14-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/14/6",
+          "title": "Temporary 14-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/14/7",
+          "title": "Temporary 14-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/14/8",
+          "title": "Temporary 14-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/14/9",
+          "title": "Temporary 14-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/14/10",
+          "title": "Temporary 14-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/14/11",
+          "title": "Temporary 14-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/14/12",
+          "title": "Temporary 14-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/14/13",
+          "title": "Temporary 14-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/14/14",
+          "title": "Temporary 14-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/14/15",
+          "title": "Temporary 14-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/14/16",
+          "title": "Temporary 14-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/14/17",
+          "title": "Temporary 14-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/14/18",
+          "title": "Temporary 14-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/14/19",
+          "title": "Temporary 14-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-4",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/15/0",
+          "title": "Temporary 15-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/15/1",
+          "title": "Temporary 15-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/15/2",
+          "title": "Temporary 15-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/15/3",
+          "title": "Temporary 15-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/15/4",
+          "title": "Temporary 15-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/15/5",
+          "title": "Temporary 15-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/15/6",
+          "title": "Temporary 15-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/15/7",
+          "title": "Temporary 15-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/15/8",
+          "title": "Temporary 15-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/15/9",
+          "title": "Temporary 15-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/15/10",
+          "title": "Temporary 15-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/15/11",
+          "title": "Temporary 15-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/15/12",
+          "title": "Temporary 15-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/15/13",
+          "title": "Temporary 15-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/15/14",
+          "title": "Temporary 15-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/15/15",
+          "title": "Temporary 15-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/15/16",
+          "title": "Temporary 15-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/15/17",
+          "title": "Temporary 15-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/15/18",
+          "title": "Temporary 15-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/15/19",
+          "title": "Temporary 15-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-5",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/16/0",
+          "title": "Temporary 16-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/16/1",
+          "title": "Temporary 16-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/16/2",
+          "title": "Temporary 16-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/16/3",
+          "title": "Temporary 16-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/16/4",
+          "title": "Temporary 16-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/16/5",
+          "title": "Temporary 16-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/16/6",
+          "title": "Temporary 16-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/16/7",
+          "title": "Temporary 16-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/16/8",
+          "title": "Temporary 16-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/16/9",
+          "title": "Temporary 16-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/16/10",
+          "title": "Temporary 16-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/16/11",
+          "title": "Temporary 16-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/16/12",
+          "title": "Temporary 16-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/16/13",
+          "title": "Temporary 16-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/16/14",
+          "title": "Temporary 16-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/16/15",
+          "title": "Temporary 16-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/16/16",
+          "title": "Temporary 16-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/16/17",
+          "title": "Temporary 16-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/16/18",
+          "title": "Temporary 16-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/16/19",
+          "title": "Temporary 16-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-6",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/17/0",
+          "title": "Temporary 17-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/17/1",
+          "title": "Temporary 17-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/17/2",
+          "title": "Temporary 17-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/17/3",
+          "title": "Temporary 17-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/17/4",
+          "title": "Temporary 17-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/17/5",
+          "title": "Temporary 17-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/17/6",
+          "title": "Temporary 17-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/17/7",
+          "title": "Temporary 17-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/17/8",
+          "title": "Temporary 17-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/17/9",
+          "title": "Temporary 17-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/17/10",
+          "title": "Temporary 17-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/17/11",
+          "title": "Temporary 17-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/17/12",
+          "title": "Temporary 17-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/17/13",
+          "title": "Temporary 17-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/17/14",
+          "title": "Temporary 17-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/17/15",
+          "title": "Temporary 17-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/17/16",
+          "title": "Temporary 17-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/17/17",
+          "title": "Temporary 17-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/17/18",
+          "title": "Temporary 17-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/17/19",
+          "title": "Temporary 17-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-7",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/18/0",
+          "title": "Temporary 18-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/18/1",
+          "title": "Temporary 18-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/18/2",
+          "title": "Temporary 18-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/18/3",
+          "title": "Temporary 18-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/18/4",
+          "title": "Temporary 18-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/18/5",
+          "title": "Temporary 18-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/18/6",
+          "title": "Temporary 18-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/18/7",
+          "title": "Temporary 18-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/18/8",
+          "title": "Temporary 18-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/18/9",
+          "title": "Temporary 18-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/18/10",
+          "title": "Temporary 18-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/18/11",
+          "title": "Temporary 18-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/18/12",
+          "title": "Temporary 18-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/18/13",
+          "title": "Temporary 18-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/18/14",
+          "title": "Temporary 18-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/18/15",
+          "title": "Temporary 18-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/18/16",
+          "title": "Temporary 18-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/18/17",
+          "title": "Temporary 18-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/18/18",
+          "title": "Temporary 18-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/18/19",
+          "title": "Temporary 18-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-8",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/19/0",
+          "title": "Temporary 19-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/19/1",
+          "title": "Temporary 19-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/19/2",
+          "title": "Temporary 19-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/19/3",
+          "title": "Temporary 19-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/19/4",
+          "title": "Temporary 19-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/19/5",
+          "title": "Temporary 19-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/19/6",
+          "title": "Temporary 19-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/19/7",
+          "title": "Temporary 19-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/19/8",
+          "title": "Temporary 19-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/19/9",
+          "title": "Temporary 19-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/19/10",
+          "title": "Temporary 19-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/19/11",
+          "title": "Temporary 19-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/19/12",
+          "title": "Temporary 19-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/19/13",
+          "title": "Temporary 19-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/19/14",
+          "title": "Temporary 19-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/19/15",
+          "title": "Temporary 19-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/19/16",
+          "title": "Temporary 19-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/19/17",
+          "title": "Temporary 19-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/19/18",
+          "title": "Temporary 19-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/19/19",
+          "title": "Temporary 19-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-9",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/20/0",
+          "title": "Temporary 20-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/20/1",
+          "title": "Temporary 20-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/20/2",
+          "title": "Temporary 20-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/20/3",
+          "title": "Temporary 20-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/20/4",
+          "title": "Temporary 20-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/20/5",
+          "title": "Temporary 20-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/20/6",
+          "title": "Temporary 20-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/20/7",
+          "title": "Temporary 20-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/20/8",
+          "title": "Temporary 20-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/20/9",
+          "title": "Temporary 20-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/20/10",
+          "title": "Temporary 20-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/20/11",
+          "title": "Temporary 20-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/20/12",
+          "title": "Temporary 20-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/20/13",
+          "title": "Temporary 20-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/20/14",
+          "title": "Temporary 20-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/20/15",
+          "title": "Temporary 20-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/20/16",
+          "title": "Temporary 20-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/20/17",
+          "title": "Temporary 20-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/20/18",
+          "title": "Temporary 20-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/20/19",
+          "title": "Temporary 20-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-0",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/21/0",
+          "title": "Temporary 21-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/21/1",
+          "title": "Temporary 21-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/21/2",
+          "title": "Temporary 21-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/21/3",
+          "title": "Temporary 21-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/21/4",
+          "title": "Temporary 21-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/21/5",
+          "title": "Temporary 21-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/21/6",
+          "title": "Temporary 21-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/21/7",
+          "title": "Temporary 21-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/21/8",
+          "title": "Temporary 21-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/21/9",
+          "title": "Temporary 21-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/21/10",
+          "title": "Temporary 21-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/21/11",
+          "title": "Temporary 21-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/21/12",
+          "title": "Temporary 21-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/21/13",
+          "title": "Temporary 21-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/21/14",
+          "title": "Temporary 21-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/21/15",
+          "title": "Temporary 21-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/21/16",
+          "title": "Temporary 21-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/21/17",
+          "title": "Temporary 21-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/21/18",
+          "title": "Temporary 21-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/21/19",
+          "title": "Temporary 21-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-1",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/22/0",
+          "title": "Temporary 22-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/22/1",
+          "title": "Temporary 22-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/22/2",
+          "title": "Temporary 22-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/22/3",
+          "title": "Temporary 22-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/22/4",
+          "title": "Temporary 22-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/22/5",
+          "title": "Temporary 22-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/22/6",
+          "title": "Temporary 22-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/22/7",
+          "title": "Temporary 22-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/22/8",
+          "title": "Temporary 22-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/22/9",
+          "title": "Temporary 22-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/22/10",
+          "title": "Temporary 22-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/22/11",
+          "title": "Temporary 22-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/22/12",
+          "title": "Temporary 22-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/22/13",
+          "title": "Temporary 22-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/22/14",
+          "title": "Temporary 22-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/22/15",
+          "title": "Temporary 22-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/22/16",
+          "title": "Temporary 22-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/22/17",
+          "title": "Temporary 22-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/22/18",
+          "title": "Temporary 22-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/22/19",
+          "title": "Temporary 22-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-2",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/23/0",
+          "title": "Temporary 23-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/23/1",
+          "title": "Temporary 23-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/23/2",
+          "title": "Temporary 23-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/23/3",
+          "title": "Temporary 23-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/23/4",
+          "title": "Temporary 23-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/23/5",
+          "title": "Temporary 23-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/23/6",
+          "title": "Temporary 23-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/23/7",
+          "title": "Temporary 23-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/23/8",
+          "title": "Temporary 23-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/23/9",
+          "title": "Temporary 23-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/23/10",
+          "title": "Temporary 23-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/23/11",
+          "title": "Temporary 23-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/23/12",
+          "title": "Temporary 23-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/23/13",
+          "title": "Temporary 23-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/23/14",
+          "title": "Temporary 23-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/23/15",
+          "title": "Temporary 23-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/23/16",
+          "title": "Temporary 23-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/23/17",
+          "title": "Temporary 23-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/23/18",
+          "title": "Temporary 23-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/23/19",
+          "title": "Temporary 23-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-3",
+      "server_type": "synthetic_authorized"
+    },
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/bench/24/0",
+          "title": "Temporary 24-0"
+        },
+        {
+          "category": "show",
+          "path": "/bench/24/1",
+          "title": "Temporary 24-1"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/24/2",
+          "title": "Temporary 24-2"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/24/3",
+          "title": "Temporary 24-3"
+        },
+        {
+          "category": "game",
+          "path": "/bench/24/4",
+          "title": "Temporary 24-4"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/24/5",
+          "title": "Temporary 24-5"
+        },
+        {
+          "category": "show",
+          "path": "/bench/24/6",
+          "title": "Temporary 24-6"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/24/7",
+          "title": "Temporary 24-7"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/24/8",
+          "title": "Temporary 24-8"
+        },
+        {
+          "category": "game",
+          "path": "/bench/24/9",
+          "title": "Temporary 24-9"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/24/10",
+          "title": "Temporary 24-10"
+        },
+        {
+          "category": "show",
+          "path": "/bench/24/11",
+          "title": "Temporary 24-11"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/24/12",
+          "title": "Temporary 24-12"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/24/13",
+          "title": "Temporary 24-13"
+        },
+        {
+          "category": "game",
+          "path": "/bench/24/14",
+          "title": "Temporary 24-14"
+        },
+        {
+          "category": "movie",
+          "path": "/bench/24/15",
+          "title": "Temporary 24-15"
+        },
+        {
+          "category": "show",
+          "path": "/bench/24/16",
+          "title": "Temporary 24-16"
+        },
+        {
+          "category": "public-domain",
+          "path": "/bench/24/17",
+          "title": "Temporary 24-17"
+        },
+        {
+          "category": "internal",
+          "path": "/bench/24/18",
+          "title": "Temporary 24-18"
+        },
+        {
+          "category": "game",
+          "path": "/bench/24/19",
+          "title": "Temporary 24-19"
+        }
+      ],
+      "legal_basis": "synthetic_benchmark",
+      "region": "LOCAL",
+      "server_id": "node-4",
+      "server_type": "synthetic_authorized"
+    }
+  ]
+}

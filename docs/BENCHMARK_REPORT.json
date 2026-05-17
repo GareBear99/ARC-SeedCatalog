@@ -1,0 +1,48 @@
+{
+  "all_passed": true,
+  "cases": [
+    {
+      "case": "canonical",
+      "entries": 2,
+      "ingest_seconds_max": 0.0001756569999997737,
+      "ingest_seconds_median": 8.326599981955951e-05,
+      "ingest_seconds_min": 8.01129999672412e-05,
+      "jsonl_bytes": 1806,
+      "split_size_bytes": 5057,
+      "zip_size_bytes": 2171
+    },
+    {
+      "case": "flat",
+      "entries": 2,
+      "ingest_seconds_max": 0.0001470460001655738,
+      "ingest_seconds_median": 8.358049990420113e-05,
+      "ingest_seconds_min": 7.851600003050407e-05,
+      "jsonl_bytes": 1806,
+      "split_size_bytes": 5057,
+      "zip_size_bytes": 2175
+    },
+    {
+      "case": "data_wrapped",
+      "entries": 2,
+      "ingest_seconds_max": 0.0001488859998062253,
+      "ingest_seconds_median": 8.321699988300679e-05,
+      "ingest_seconds_min": 7.945299967104802e-05,
+      "jsonl_bytes": 1806,
+      "split_size_bytes": 5057,
+      "zip_size_bytes": 2173
+    },
+    {
+      "case": "synthetic_500",
+      "entries": 500,
+      "ingest_seconds_max": 0.016749972000070557,
+      "ingest_seconds_median": 0.01611651750022247,
+      "ingest_seconds_min": 0.014871147999656387,
+      "jsonl_bytes": 451500,
+      "split_size_bytes": 1064805,
+      "zip_size_bytes": 136027
+    }
+  ],
+  "method": "in-process package-generation benchmark, 20 ingest iterations per case",
+  "python": "3.13.5 (main, Jun 25 2025, 18:55:22) [GCC 14.2.0]",
+  "schema": "arc.seedcatalog.benchmark_report.v7"
+}

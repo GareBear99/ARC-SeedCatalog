@@ -1,6 +1,7 @@
 # Security Policy
 
 - Treat all input JSON as untrusted.
+- Do not execute input JSON.
 - Do not fetch URLs from input.
 - Do not export raw fields.
 - Treat seeds as secrets.

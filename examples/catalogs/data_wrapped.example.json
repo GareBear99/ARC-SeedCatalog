@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "category": "internal",
+      "path": "/d/1",
+      "server": "data-node",
+      "title": "Temporary"
+    },
+    {
+      "category": "game",
+      "path": "/d/2",
+      "server": "data-node",
+      "title": "Temporary"
+    }
+  ]
+}

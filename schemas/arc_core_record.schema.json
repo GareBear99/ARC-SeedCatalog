@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "properties": {
     "schema": {
-      "const": "arc.core.seedcatalog_registration.v6"
+      "const": "arc.core.seedcatalog_registration.v7"
     },
     "stores_raw_data": {
       "const": false
@@ -16,6 +16,6 @@
     "category_vector",
     "stores_raw_data"
   ],
-  "title": "ARC-Core SeedCatalog Record v6",
+  "title": "ARC-Core SeedCatalog Record v7",
   "type": "object"
 }

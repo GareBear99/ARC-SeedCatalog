@@ -13,6 +13,6 @@
     "arc_core_records.jsonl",
     "README.txt"
   ],
-  "schema": "arc.rar.seedcatalog_pack_template.v6",
+  "schema": "arc.rar.seedcatalog_pack_template.v7",
   "stores_raw_data": false
 }

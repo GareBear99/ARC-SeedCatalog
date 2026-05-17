@@ -1,35 +1,25 @@
-# ARC-SeedCatalog v0.6.0
+# ARC-SeedCatalog v0.7.0 — Verified + Benchmarked
 
-Static + CLI Palantir-style ARC-Core split-bundle catalog ingestion for authorized server/source JSON.
+ARC-SeedCatalog is a static + CLI, Palantir-style ARC-Core split-bundle catalog ingester for authorized server/source JSON.
 
-ARC-SeedCatalog ingests flexible authorized catalog JSON, normalizes rows in volatile memory, and exports ARC-safe proof bundles without preserving raw titles, URLs, paths, server names, hostnames, descriptions, posters, media, or user data.
+It ingests flexible authorized catalog JSON, normalizes rows in volatile memory, derives opaque seeded receipts, and exports ARC-safe proof bundles without preserving raw titles, URLs, paths, server names, hostnames, descriptions, posters, media, or user data.
 
-## Complete v0.6 foundation
+## v0.7.0
 
-- GitHub Pages static app
+This release adds package-wide validation and benchmark reports:
+
+- static GitHub Pages app
 - CLI companion
-- adapter profiles
-- category maps
-- receipt bundles
-- policy bundles
-- ARC-Core handoff JSON
-- ARC-Core JSONL export
-- ARC-Core FastAPI route stub
+- ARC-Core route stub
 - SQLite migration
 - Arc-RAR proof-pack template
 - zip proof-pack export
-- OmniBinary hash discipline
+- OmniBinary hash discipline docs
 - signing-ready envelope
-- seed-vault docs
-- schemas/examples/tests
-
-## Static app
-
-Open:
-
-```text
-index.html
-```
+- benchmark script
+- generated benchmark report
+- smoke tests
+- examples for canonical, flat, data-wrapped, and synthetic catalogs
 
 ## CLI
 
@@ -39,6 +29,7 @@ python cli/arc_seedcatalog/cli.py verify out/split.json
 python cli/arc_seedcatalog/cli.py export-jsonl out/split.json --out out/records.jsonl
 python cli/arc_seedcatalog/cli.py proof-pack out/split.json --out out/proof-pack.json
 python cli/arc_seedcatalog/cli.py zip-pack out/split.json --out out/proof-pack.zip
+python benchmarks/benchmark_cli.py
 ```
 
 ## Legal boundary
