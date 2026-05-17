@@ -1,10 +1,8 @@
-# Benchmark Report
+# Benchmark Matrix
 
-Generated during package build with in-process validation.
-
-| Case | Entries | Median ingest (s) | Min (s) | Max (s) | Split bytes | ZIP bytes |
+| Case | Entries | Median ingest (s) | Min (s) | Max (s) | Split bytes | ARC Binary bytes |
 |---|---:|---:|---:|---:|---:|---:|
-| canonical | 2 | 0.00008327 | 0.00008011 | 0.00017566 | 5057 | 2171 |
-| flat | 2 | 0.00008358 | 0.00007852 | 0.00014705 | 5057 | 2175 |
-| data_wrapped | 2 | 0.00008322 | 0.00007945 | 0.00014889 | 5057 | 2173 |
-| synthetic_500 | 500 | 0.01611652 | 0.01487115 | 0.01674997 | 1064805 | 136027 |
+| canonical | 2 | 0.00010130 | 0.00009372 | 0.00021367 | 6120 | 5204 |
+| flat | 2 | 0.00009624 | 0.00009249 | 0.00012249 | 6120 | 5204 |
+| data_wrapped | 2 | 0.00009458 | 0.00009118 | 0.00013732 | 6120 | 5204 |
+| synthetic_500 | 500 | 0.01574860 | 0.01518511 | 0.01798554 | 1065868 | 911568 |

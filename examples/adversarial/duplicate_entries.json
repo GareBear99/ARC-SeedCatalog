@@ -1,0 +1,19 @@
+{
+  "servers": [
+    {
+      "items": [
+        {
+          "category": "movie",
+          "path": "/same",
+          "title": "Same"
+        },
+        {
+          "category": "movie",
+          "path": "/same",
+          "title": "Same"
+        }
+      ],
+      "server_id": "dup"
+    }
+  ]
+}

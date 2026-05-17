@@ -1,0 +1,59 @@
+{
+  "schema": "arc.seedcatalog.split_bundle.v8",
+  "receipt_bundle": {
+    "schema": "arc.seedcatalog.receipt_bundle.v8",
+    "count": 0,
+    "receipts": [],
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:33581f79f11a02bec047067edc48615d6fd2b9b7b5ea21af05648e64001eb276"
+  },
+  "policy_bundle": {
+    "schema": "arc.seedcatalog.policy_bundle.v8",
+    "raw_field_denylist": [
+      "title",
+      "name",
+      "url",
+      "href",
+      "path",
+      "server",
+      "server_id",
+      "host",
+      "hostname",
+      "stream",
+      "stream_url",
+      "watch_url",
+      "poster",
+      "image",
+      "description",
+      "overview",
+      "token",
+      "cookie",
+      "authorization",
+      "email",
+      "user"
+    ],
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:813d8494d25fc3c508532a461ea502799690d571b5ba8f12eec6fc8456317686"
+  },
+  "arc_core_handoff_bundle": {
+    "schema": "arc.core.seedcatalog_handoff_bundle.v8",
+    "records": [],
+    "entry_count": 0,
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:e7d1520e0a3b828ee433981db6a32e6a42ee09d56e771ac7b14aed7a95aee5a3"
+  },
+  "signature_envelope": {
+    "schema": "arc.seedcatalog.signature_envelope.v8",
+    "status": "unsigned",
+    "signing_algorithm": "ed25519-planned",
+    "signable_hashes": {
+      "receipt_bundle": "sha256:33581f79f11a02bec047067edc48615d6fd2b9b7b5ea21af05648e64001eb276",
+      "arc_core_handoff_bundle": "sha256:e7d1520e0a3b828ee433981db6a32e6a42ee09d56e771ac7b14aed7a95aee5a3",
+      "policy_bundle": "sha256:813d8494d25fc3c508532a461ea502799690d571b5ba8f12eec6fc8456317686"
+    },
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:3a0a14e2b392c743dd53704f662c253fcbb897e5107e04793b37b6eded527962"
+  },
+  "stores_raw_data": false,
+  "catalog_hash": "sha256:edb49958a555df1197e7d23b4800506599bf6b83ff49684f75c4a30231664b98"
+}

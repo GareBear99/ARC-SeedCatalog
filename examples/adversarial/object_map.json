@@ -1,0 +1,16 @@
+{
+  "nodeA": [
+    {
+      "category": "show",
+      "path": "/a",
+      "title": "A"
+    }
+  ],
+  "nodeB": [
+    {
+      "category": "game",
+      "path": "/b",
+      "title": "B"
+    }
+  ]
+}

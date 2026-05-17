@@ -1,0 +1,19 @@
+{
+  "servers": [
+    {
+      "host": "raw-host-should-not-export",
+      "items": [
+        {
+          "category": "movie",
+          "description": "raw description",
+          "path": "https://example.invalid/watch/secret",
+          "title": "<img src=x onerror=alert(1)>",
+          "token": "SECRET",
+          "url": "https://example.invalid/stream.m3u8"
+        }
+      ],
+      "server_id": "<script>alert(1)</script>",
+      "server_type": "authorized_catalog"
+    }
+  ]
+}

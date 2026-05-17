@@ -3,15 +3,16 @@
 Validated during package generation.
 
 ```text
-in-process ingest benchmark: passed
-verify bundle: passed
+benchmark ingest: passed
+leak scanner: passed
+adversarial raw field/script fixture: passed
+empty catalog fixture: passed
+duplicate fixture: passed
+object-map fixture: passed
+deterministic replay: passed
 JSONL export: passed
-proof-pack export: passed
-ZIP proof-pack export: passed
-canonical catalog: passed
-flat catalog: passed
-data-wrapped catalog: passed
-synthetic 500-entry catalog: passed
+Arc-RAR style ZIP proof pack scaffold: passed
+OmniBinary .arcbin export/verify scaffold: passed
 ```
 
 See:
@@ -19,5 +20,8 @@ See:
 ```text
 docs/BENCHMARK_REPORT.md
 docs/BENCHMARK_REPORT.json
+docs/ADVERSARIAL_REPORT.md
 out/bench/
+out/adversarial/
+out/replay/
 ```

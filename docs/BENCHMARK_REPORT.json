@@ -1,48 +1,75 @@
 {
+  "adversarial": [
+    {
+      "case": "raw_fields_and_scripts",
+      "entries": 1,
+      "leak_scan_ok": true,
+      "raw_field_leaks": 0
+    },
+    {
+      "case": "empty_catalog",
+      "entries": 0,
+      "leak_scan_ok": true,
+      "raw_field_leaks": 0
+    },
+    {
+      "case": "duplicate_entries",
+      "entries": 2,
+      "leak_scan_ok": true,
+      "raw_field_leaks": 0
+    },
+    {
+      "case": "object_map",
+      "entries": 2,
+      "leak_scan_ok": true,
+      "raw_field_leaks": 0
+    }
+  ],
   "all_passed": true,
   "cases": [
     {
+      "arcbin_size_bytes": 5204,
       "case": "canonical",
       "entries": 2,
-      "ingest_seconds_max": 0.0001756569999997737,
-      "ingest_seconds_median": 8.326599981955951e-05,
-      "ingest_seconds_min": 8.01129999672412e-05,
-      "jsonl_bytes": 1806,
-      "split_size_bytes": 5057,
-      "zip_size_bytes": 2171
+      "ingest_seconds_max": 0.00021366700002545258,
+      "ingest_seconds_median": 0.00010130450004908198,
+      "ingest_seconds_min": 9.372199974677642e-05,
+      "split_size_bytes": 6120
     },
     {
+      "arcbin_size_bytes": 5204,
       "case": "flat",
       "entries": 2,
-      "ingest_seconds_max": 0.0001470460001655738,
-      "ingest_seconds_median": 8.358049990420113e-05,
-      "ingest_seconds_min": 7.851600003050407e-05,
-      "jsonl_bytes": 1806,
-      "split_size_bytes": 5057,
-      "zip_size_bytes": 2175
+      "ingest_seconds_max": 0.00012249100018379977,
+      "ingest_seconds_median": 9.624499989513424e-05,
+      "ingest_seconds_min": 9.248500009562122e-05,
+      "split_size_bytes": 6120
     },
     {
+      "arcbin_size_bytes": 5204,
       "case": "data_wrapped",
       "entries": 2,
-      "ingest_seconds_max": 0.0001488859998062253,
-      "ingest_seconds_median": 8.321699988300679e-05,
-      "ingest_seconds_min": 7.945299967104802e-05,
-      "jsonl_bytes": 1806,
-      "split_size_bytes": 5057,
-      "zip_size_bytes": 2173
+      "ingest_seconds_max": 0.00013732300021729316,
+      "ingest_seconds_median": 9.457600003770494e-05,
+      "ingest_seconds_min": 9.117800027524936e-05,
+      "split_size_bytes": 6120
     },
     {
+      "arcbin_size_bytes": 911568,
       "case": "synthetic_500",
       "entries": 500,
-      "ingest_seconds_max": 0.016749972000070557,
-      "ingest_seconds_median": 0.01611651750022247,
-      "ingest_seconds_min": 0.014871147999656387,
-      "jsonl_bytes": 451500,
-      "split_size_bytes": 1064805,
-      "zip_size_bytes": 136027
+      "ingest_seconds_max": 0.017985544999646663,
+      "ingest_seconds_median": 0.01574860300002001,
+      "ingest_seconds_min": 0.015185111999926448,
+      "split_size_bytes": 1065868
     }
   ],
-  "method": "in-process package-generation benchmark, 20 ingest iterations per case",
+  "method": "in-process package-generation benchmark, 20 ingest iterations per benchmark case",
   "python": "3.13.5 (main, Jun 25 2025, 18:55:22) [GCC 14.2.0]",
-  "schema": "arc.seedcatalog.benchmark_report.v7"
+  "replay": {
+    "actual_hash": "sha256:97ff3c62fcf412c9e62e6f7249f84aec36f2391bc5eaf9103edb8b84d6ad514d",
+    "expected_hash": "sha256:97ff3c62fcf412c9e62e6f7249f84aec36f2391bc5eaf9103edb8b84d6ad514d",
+    "ok": true
+  },
+  "schema": "arc.seedcatalog.benchmark_report.v8"
 }

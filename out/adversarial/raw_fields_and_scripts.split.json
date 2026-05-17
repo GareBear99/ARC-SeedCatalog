@@ -1,0 +1,93 @@
+{
+  "schema": "arc.seedcatalog.split_bundle.v8",
+  "receipt_bundle": {
+    "schema": "arc.seedcatalog.receipt_bundle.v8",
+    "count": 1,
+    "receipts": [
+      {
+        "schema": "arc.seedcatalog.entry_receipt.v8",
+        "entry_id": "hmac-sha256:7c80f0755ae0dc802a534e35e6903d482c4fcef2b2a66cf5bef4138f580484c6",
+        "source_id": "sha256:b36047e89b764d14a4e5e825d16ec2361fd681869ca05c79451832e107f5f7a6",
+        "category_vector": "hmac-sha256:b21249032810d912b691604d8e9649caaccc81dc9c49e2c1c216c63270faffbb",
+        "category_path_hash": "sha256:7699feb7160d84fe020b26a053a7cc52150bf2f983019dcb417853d287d4004d",
+        "ruleset_hash": "sha256:dfb288357a475cf78dcd11545c2ec6b6712372f70ae78ca96e98e4422cb4360e",
+        "category_map_hash": "sha256:a21adf2bf1c5816a2f9cacadb332b4aa0d430ad94ad2fa2f6619e65a3e8c1ed8",
+        "adapter_profile_hash": "sha256:b7eb82c47ed7ba97b90562fd5695bfe8e8fd2ee30ff31ad9f5df288b80000162",
+        "epoch": "2026-05-16",
+        "stored_raw_data": false,
+        "stores_title": false,
+        "stores_path": false,
+        "stores_server_name": false,
+        "stores_url": false,
+        "stores_user_data": false,
+        "receipt_hash": "sha256:d85b95bddc541558475bd914fcd00b2d41f147985232c19832027b6848be791c"
+      }
+    ],
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:c78dd99b208090d4749fc4660484fb8f295e4353ea1aa093533789d11d416277"
+  },
+  "policy_bundle": {
+    "schema": "arc.seedcatalog.policy_bundle.v8",
+    "raw_field_denylist": [
+      "title",
+      "name",
+      "url",
+      "href",
+      "path",
+      "server",
+      "server_id",
+      "host",
+      "hostname",
+      "stream",
+      "stream_url",
+      "watch_url",
+      "poster",
+      "image",
+      "description",
+      "overview",
+      "token",
+      "cookie",
+      "authorization",
+      "email",
+      "user"
+    ],
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:813d8494d25fc3c508532a461ea502799690d571b5ba8f12eec6fc8456317686"
+  },
+  "arc_core_handoff_bundle": {
+    "schema": "arc.core.seedcatalog_handoff_bundle.v8",
+    "records": [
+      {
+        "schema": "arc.core.seedcatalog_registration.v8",
+        "source": "arc-seedcatalog",
+        "object_type": "seedcatalog_entry_receipt",
+        "receipt_hash": "sha256:d85b95bddc541558475bd914fcd00b2d41f147985232c19832027b6848be791c",
+        "entry_id": "hmac-sha256:7c80f0755ae0dc802a534e35e6903d482c4fcef2b2a66cf5bef4138f580484c6",
+        "source_id": "sha256:b36047e89b764d14a4e5e825d16ec2361fd681869ca05c79451832e107f5f7a6",
+        "category_vector": "hmac-sha256:b21249032810d912b691604d8e9649caaccc81dc9c49e2c1c216c63270faffbb",
+        "category_path_hash": "sha256:7699feb7160d84fe020b26a053a7cc52150bf2f983019dcb417853d287d4004d",
+        "ruleset_hash": "sha256:dfb288357a475cf78dcd11545c2ec6b6712372f70ae78ca96e98e4422cb4360e",
+        "category_map_hash": "sha256:a21adf2bf1c5816a2f9cacadb332b4aa0d430ad94ad2fa2f6619e65a3e8c1ed8",
+        "adapter_profile_hash": "sha256:b7eb82c47ed7ba97b90562fd5695bfe8e8fd2ee30ff31ad9f5df288b80000162",
+        "stores_raw_data": false
+      }
+    ],
+    "entry_count": 1,
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:9a9afac81b5955de1f9cdea740de4d06e57f3bd1d4456a97ba76bb8dd277457d"
+  },
+  "signature_envelope": {
+    "schema": "arc.seedcatalog.signature_envelope.v8",
+    "status": "unsigned",
+    "signing_algorithm": "ed25519-planned",
+    "signable_hashes": {
+      "receipt_bundle": "sha256:c78dd99b208090d4749fc4660484fb8f295e4353ea1aa093533789d11d416277",
+      "arc_core_handoff_bundle": "sha256:9a9afac81b5955de1f9cdea740de4d06e57f3bd1d4456a97ba76bb8dd277457d",
+      "policy_bundle": "sha256:813d8494d25fc3c508532a461ea502799690d571b5ba8f12eec6fc8456317686"
+    },
+    "stores_raw_data": false,
+    "bundle_hash": "sha256:949cdac12e123dd98fd41ca556c6ecbd47cdc4513f9c6708ec193e711f09fe0d"
+  },
+  "stores_raw_data": false,
+  "catalog_hash": "sha256:8188a5c54c72d1a6341e1941ed92ce1e7781392a2fd02fe4cbe802d5a5ad05d7"
+}

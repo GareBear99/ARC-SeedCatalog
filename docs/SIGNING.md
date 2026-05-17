@@ -1,3 +1,3 @@
 # Signing
 
-v0.7 is signing-ready. v0.8 should add Ed25519 signatures over bundle hashes.
+v0.8 includes a signing-ready envelope. v0.9 should implement real Ed25519 signatures.
