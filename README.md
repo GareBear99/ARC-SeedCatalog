@@ -1,65 +1,51 @@
-# ARC-SeedCatalog — Palantir-Style Split Bundle Static Demo
+# ARC-SeedCatalog — Palantir ARC-Core Split Bundle
 
-ARC-SeedCatalog v0.2.0 is a static GitHub Pages-ready ingestion system for authorized server/catalog JSON.
+**ARC-SeedCatalog v0.3.0** is a static GitHub Pages-ready catalog ingestion tool for authorized server/source JSON.
 
-It uses a **Palantir-style split-bundle architecture**:
+It ingests broad JSON shapes, normalizes them in browser memory, sorts/groups/searches the derived catalog, then exports ARC-safe split bundles.
 
-```text
-Input Bundle      = temporary server/catalog JSON
-Normalize Bundle  = canonical volatile rows
-Receipt Bundle    = opaque entry/source/category receipts
-Policy Bundle     = no-title/no-url/no-server/user-data rules
-Resolver Bundle   = temporary in-browser lookup map only
-ARC-Core Bundle   = safe authority handoff payload
-Arc-RAR Bundle    = portable proof/export package
-OmniBinary Bundle = canonical byte/hash discipline
-```
-
-## Core rule
-
-The system can ingest a JSON file that contains server-ish fields, but the exported ARC catalog does **not** store raw:
-
-- server names
-- hostnames
-- stream URLs
-- titles
-- paths
-- media files
-- posters
-- descriptions
-- user data
-
-It stores only:
-
-- opaque source hashes
-- opaque seeded entry IDs
-- category vectors
-- ruleset hash
-- receipt hashes
-- catalog receipt hash
-- counts/group summaries
-
-## Runs statically
-
-No backend. No database. No server. No build step.
-
-Open:
+## Core promise
 
 ```text
-index.html
+Ingest flexible authorized server/source JSON.
+Do not store raw server names, titles, URLs, paths, media, descriptions, posters, or user data.
+Export only opaque seeded IDs, source hashes, category vectors, policy, receipts, and ARC-Core handoff bundles.
 ```
 
-or deploy to GitHub Pages.
+## Split-bundle architecture
 
-## Input formats
+```text
+Input Bundle       temporary user-provided JSON, not exported by default
+Normalize Bundle   proof of volatile normalization
+Receipt Bundle     opaque source/entry/category receipt records
+Policy Bundle      no-title/no-url/no-server-name rules
+Index Bundle       category/source/count/search metadata without raw names
+ARC-Core Bundle    safe authority registration payload
+Arc-RAR Bundle     portable proof/export plan
+OmniBinary Bundle  canonical byte/hash discipline
+```
 
-Supports:
+## Static features
 
-- canonical `{ servers: [...] }`
-- flat arrays of rows
-- wrapped `{ data: [...] }`
-- generic object maps with rows inside
+- no backend
+- no database
+- no build step
+- runs on GitHub Pages
+- paste JSON or upload JSON
+- accepts multiple JSON shapes
+- derives source hashes and entry IDs with Web Crypto
+- category grouping
+- source grouping
+- search receipts by hash/category/source
+- sort by receipt/source/category/epoch
+- export all bundles
+- export ARC-Core handoff only
+- export Arc-RAR style proof plan
+- export receipt bundle only
+- generate a static validation report in-browser
 
 ## Legal boundary
 
-Use only for authorized/public-domain/licensed/internal/owned catalogs. This package does not include adapters for unauthorized streaming sources or hidden server routing.
+This project is source-agnostic at the JSON-shape level, but it is only intended for authorized/public-domain/licensed/internal/owned catalogs.
+
+Do not use it to mirror piracy sites, preserve unauthorized streaming hosts, route unlicensed streams, bypass access controls, or store hidden server lists.

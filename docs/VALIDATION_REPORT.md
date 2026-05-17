@@ -1,16 +1,36 @@
 # Validation Report
 
-Package created as static GitHub Pages-ready artifact.
-
-Validated features:
+v0.3.0 package includes:
 
 ```text
-static index.html included
-flexible JSON normalization included
-split bundle export included
-ARC-Core handoff bundle included
-Arc-RAR export bundle included
-OmniBinary bundle included
-no backend required
-no raw title/server/url storage in exported output
+static index.html
+flexible JSON normalization
+file upload
+paste ingest
+sorting
+receipt search
+category/source/epoch counts
+receipt bundle
+policy bundle
+normalize bundle
+index bundle
+ARC-Core handoff bundle
+Arc-RAR export bundle
+OmniBinary bundle
+validation bundle
+GitHub Pages workflow
+schemas
+examples
+legal policy
+```
+
+Safety assertions:
+
+```text
+exports raw titles: false
+exports raw paths: false
+exports raw URLs: false
+exports raw server names: false
+exports media: false
+exports user data: false
 ```

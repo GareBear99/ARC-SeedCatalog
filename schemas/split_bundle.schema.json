@@ -1,8 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "properties": {
+    "arc_core_handoff_bundle": {
+      "type": "object"
+    },
+    "index_bundle": {
+      "type": "object"
+    },
+    "policy_bundle": {
+      "type": "object"
+    },
+    "receipt_bundle": {
+      "type": "object"
+    },
     "schema": {
-      "const": "arc.seedcatalog.split_bundle.v2"
+      "const": "arc.seedcatalog.split_bundle.v3"
     },
     "stores_raw_data": {
       "const": false
@@ -12,9 +24,10 @@
     "schema",
     "receipt_bundle",
     "policy_bundle",
+    "index_bundle",
     "arc_core_handoff_bundle",
     "stores_raw_data"
   ],
-  "title": "ARC SeedCatalog Split Bundle",
+  "title": "ARC SeedCatalog Split Bundle v3",
   "type": "object"
 }

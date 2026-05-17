@@ -1,31 +1,33 @@
-# Palantir-Style ARC-Core Split Bundle Architecture
+# Architecture
 
-ARC-SeedCatalog v0.2.0 splits output into bundles instead of one mixed blob.
+ARC-SeedCatalog v0.3 uses a Palantir-style split-bundle approach.
 
-## Bundle map
+## Bundle flow
 
 ```text
-receipt_bundle
-  Opaque source IDs, entry IDs, category vectors, receipt hashes.
-
-policy_bundle
-  Rules and explicit disallowed storage fields.
-
-normalize_bundle
-  Proof that normalization happened in volatile memory only.
-
-arc_core_handoff_bundle
-  Safe payload for ARC-Core authority registration.
-
-arc_rar_export_bundle
-  Portable proof/export plan.
-
-omnibinary_bundle
-  Canonical byte/hash discipline for deterministic verification.
+Flexible JSON input
+  -> volatile normalization
+  -> receipt bundle
+  -> policy bundle
+  -> index bundle
+  -> ARC-Core handoff bundle
+  -> Arc-RAR export bundle
+  -> OmniBinary bundle
+  -> validation bundle
 ```
 
-## Why this solves the single-source-of-truth problem
+## ARC-Core role
 
-ARC-Core does not need raw catalog data. It needs authority-safe receipts.
+ARC-Core should ingest only the `arc_core_handoff_bundle` or the full split bundle. It should not ingest raw source/catalog JSON.
 
-The static page can ingest broad JSON shapes, normalize them in temporary browser memory, discard raw fields, and export only the receipt bundles.
+## Arc-RAR role
+
+Arc-RAR should package exported proof bundles for portable archive/rollback without raw catalog contents.
+
+## OmniBinary role
+
+OmniBinary defines byte-stable canonicalization and hash discipline for every exported bundle.
+
+## Resolver rule
+
+Raw resolver maps can exist only in volatile browser memory while deriving receipts. They are intentionally not exported.

@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ARC-SeedCatalog Split Bundle</title>
+  <title>ARC-SeedCatalog v0.3 — Split Bundle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Static Palantir-style ARC-Core split-bundle server/catalog JSON ingestion.">
+  <meta name="description" content="Static Palantir-style ARC-Core split-bundle source/catalog JSON ingestion.">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main>
   <header>
-    <div class="badge">ARC-SeedCatalog · Palantir ARC-Core split bundle · static</div>
-    <h1>Ingest any authorized server JSON. Export ARC split bundles.</h1>
-    <p class="lede">Static browser ingestion for server/catalog JSON. Outputs receipt, policy, ARC-Core handoff, Arc-RAR export, and OmniBinary bundles without storing raw server names, URLs, titles, paths, media, or users.</p>
-    <div class="notice">Use for lawful, authorized/public-domain/licensed/internal catalogs only. No unauthorized streaming adapters or host-routing logic are included.</div>
+    <div class="badge">ARC-SeedCatalog v0.3 · Palantir ARC-Core split bundle · static</div>
+    <h1>Ingest authorized server/source JSON. Export ARC-safe split bundles.</h1>
+    <p class="lede">A static browser tool for flexible catalog JSON ingestion, opaque seeded categorization, receipt generation, ARC-Core handoff, Arc-RAR export planning, and OmniBinary proof discipline.</p>
+    <div class="notice">For lawful/authorized/public-domain/licensed/internal catalogs only. Exported bundles do not store raw server names, titles, paths, URLs, media, descriptions, posters, or user data.</div>
   </header>
   <section class="grid">
     <div class="card">
@@ -22,33 +22,45 @@
         <div><label>Seed / local secret</label><input id="seed" value="arc-seedcatalog-local-demo-seed"></div>
         <div><label>Epoch</label><input id="epoch" value="2026-05-16"></div>
       </div>
+      <div class="row">
+        <div><label>Sort receipts by</label><select id="sort"><option value="receipt">receipt hash</option><option value="source">source</option><option value="category">category vector</option><option value="epoch">epoch</option></select></div>
+        <div><label>Search output</label><input id="search" placeholder="hash/category/source search"></div>
+      </div>
       <label>Upload JSON</label><input id="file" type="file" accept=".json,application/json">
       <label>Paste JSON</label><textarea id="jsonInput"></textarea>
       <button id="ingest">Build split bundles</button>
-      <button class="secondary" id="loadExample">Load example</button>
-      <button class="secondary" id="downloadAll">Download all bundles</button>
-      <button class="secondary" id="downloadArcCore">Download ARC-Core bundle</button>
+      <button class="secondary" id="loadExample">Load canonical example</button>
+      <button class="secondary" id="loadFlat">Load flat example</button>
+      <button class="secondary" id="downloadAll">Download all</button>
+      <button class="secondary" id="downloadArcCore">ARC-Core only</button>
+      <button class="secondary" id="downloadReceipts">Receipts only</button>
     </div>
     <div class="card">
       <h2>Output</h2>
-      <p class="good">Export stores only opaque hashes/vectors/receipts and split-bundle metadata.</p>
-      <label>View bundle</label>
-      <select id="view">
-        <option value="all">All bundles</option>
-        <option value="receipt_bundle">Receipt bundle</option>
-        <option value="policy_bundle">Policy bundle</option>
-        <option value="arc_core_handoff_bundle">ARC-Core handoff bundle</option>
-        <option value="arc_rar_export_bundle">Arc-RAR export bundle</option>
-        <option value="omnibinary_bundle">OmniBinary bundle</option>
-      </select>
+      <p class="good">Only opaque hashes/vectors/receipts and split-bundle metadata are exported.</p>
+      <div class="row">
+        <div><label>View bundle</label><select id="view">
+          <option value="all">All bundles</option>
+          <option value="receipt_bundle">Receipt bundle</option>
+          <option value="policy_bundle">Policy bundle</option>
+          <option value="normalize_bundle">Normalize bundle</option>
+          <option value="index_bundle">Index bundle</option>
+          <option value="arc_core_handoff_bundle">ARC-Core handoff bundle</option>
+          <option value="arc_rar_export_bundle">Arc-RAR export bundle</option>
+          <option value="omnibinary_bundle">OmniBinary bundle</option>
+          <option value="validation_bundle">Validation bundle</option>
+        </select></div>
+        <div><label>Status</label><input id="status" readonly value="idle"></div>
+      </div>
       <pre id="output">No ingest yet.</pre>
+      <p class="mini">Search filters receipt bundle view only. Other bundle views remain exact exports.</p>
     </div>
   </section>
 </main>
 <script src="./src/seedcatalog.js"></script>
 <script>
-const example = {
-  schema:"arc.seedcatalog.flex_server_catalog.v2",
+const canonicalExample = {
+  schema:"arc.seedcatalog.flex_server_catalog.v3",
   epoch:"2026-05-16",
   servers:[
     {server_id:"public-domain-node-a",server_type:"authorized_catalog",region:"CA",legal_basis:"public_domain_or_licensed",capabilities:["metadata_lookup"],items:[
@@ -60,18 +72,36 @@ const example = {
     ]}
   ]
 };
-const input=document.getElementById("jsonInput"), output=document.getElementById("output"), view=document.getElementById("view");
+const flatExample = [
+  {server:"licensed-node-a",path:"/item/001",category:"media/movie/licensed/action",title:"Temporary Title"},
+  {server:"licensed-node-b",path:"/item/002",category:"media/show/licensed/animated",title:"Temporary Show"},
+  {source:"homebrew-node",id:"rom-test-001",category:"game/homebrew/test",name:"Temporary Homebrew Test"}
+];
+const input=document.getElementById("jsonInput"), output=document.getElementById("output"), view=document.getElementById("view"), statusEl=document.getElementById("status");
 let last=null;
-function loadExample(){input.value=JSON.stringify(example,null,2)}
-function render(){ if(!last){output.textContent="No ingest yet."; return;} const k=view.value; output.textContent=JSON.stringify(k==="all"?last:last[k],null,2); }
-loadExample();
-document.getElementById("loadExample").onclick=loadExample;
-document.getElementById("file").onchange=async e=>{const f=e.target.files[0]; if(f) input.value=await f.text();};
-document.getElementById("ingest").onclick=async()=>{try{last=await ARCSeedCatalog.buildSplitBundles(JSON.parse(input.value),document.getElementById("seed").value,document.getElementById("epoch").value);render()}catch(e){output.textContent="ERROR: "+e.message}};
-view.onchange=render;
+function load(obj){input.value=JSON.stringify(obj,null,2)}
+function currentViewObject(){
+  if(!last) return null;
+  const k=view.value;
+  if(k==="all") return last;
+  if(k==="receipt_bundle"){
+    const q=document.getElementById("search").value;
+    if(!q) return last.receipt_bundle;
+    return {...last.receipt_bundle, receipts: ARCSeedCatalog.filterReceipts(last.receipt_bundle.receipts,q)};
+  }
+  return last[k];
+}
+function render(){ const obj=currentViewObject(); output.textContent=obj?JSON.stringify(obj,null,2):"No ingest yet."; }
 function download(name,obj){const blob=new Blob([JSON.stringify(obj,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
-document.getElementById("downloadAll").onclick=()=>{if(last)download("arc-seedcatalog-split-bundles.json",last)};
-document.getElementById("downloadArcCore").onclick=()=>{if(last)download("arc-core-seedcatalog-handoff.json",last.arc_core_handoff_bundle)};
+load(canonicalExample);
+document.getElementById("loadExample").onclick=()=>load(canonicalExample);
+document.getElementById("loadFlat").onclick=()=>load(flatExample);
+document.getElementById("file").onchange=async e=>{const f=e.target.files[0]; if(f) input.value=await f.text();};
+document.getElementById("ingest").onclick=async()=>{try{statusEl.value="building...";last=await ARCSeedCatalog.buildSplitBundles(JSON.parse(input.value),document.getElementById("seed").value,document.getElementById("epoch").value,{sort:document.getElementById("sort").value});statusEl.value=`ok: ${last.receipt_bundle.count} entries`;render()}catch(e){statusEl.value="error";output.textContent="ERROR: "+e.message}};
+view.onchange=render; document.getElementById("search").oninput=render;
+document.getElementById("downloadAll").onclick=()=>{if(last)download("arc-seedcatalog-split-bundles-v0.3.json",last)};
+document.getElementById("downloadArcCore").onclick=()=>{if(last)download("arc-core-seedcatalog-handoff-v0.3.json",last.arc_core_handoff_bundle)};
+document.getElementById("downloadReceipts").onclick=()=>{if(last)download("arc-seedcatalog-receipt-bundle-v0.3.json",last.receipt_bundle)};
 </script>
 </body>
 </html>

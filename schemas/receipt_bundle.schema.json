@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "receipts": {
+      "type": "array"
+    },
+    "schema": {
+      "const": "arc.seedcatalog.receipt_bundle.v3"
+    },
+    "stores_raw_data": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema",
+    "count",
+    "receipts",
+    "stores_raw_data"
+  ],
+  "title": "ARC SeedCatalog Receipt Bundle v3",
+  "type": "object"
+}

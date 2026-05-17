@@ -10,5 +10,11 @@
     "path": "/item/002",
     "server": "licensed-node-b",
     "title": "Temporary Show"
+  },
+  {
+    "category": "game/homebrew/test",
+    "id": "rom-test-001",
+    "name": "Temporary Homebrew Test",
+    "source": "homebrew-node"
   }
 ]
