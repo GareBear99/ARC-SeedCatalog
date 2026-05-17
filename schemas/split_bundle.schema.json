@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "schema": {
+      "const": "arc.seedcatalog.split_bundle.v2"
+    },
+    "stores_raw_data": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema",
+    "receipt_bundle",
+    "policy_bundle",
+    "arc_core_handoff_bundle",
+    "stores_raw_data"
+  ],
+  "title": "ARC SeedCatalog Split Bundle",
+  "type": "object"
+}

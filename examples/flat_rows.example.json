@@ -1,0 +1,14 @@
+[
+  {
+    "category": "media/movie/licensed/action",
+    "path": "/item/001",
+    "server": "licensed-node-a",
+    "title": "Temporary Title"
+  },
+  {
+    "category": "media/show/licensed/animated",
+    "path": "/item/002",
+    "server": "licensed-node-b",
+    "title": "Temporary Show"
+  }
+]

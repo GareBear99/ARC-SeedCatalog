@@ -1,0 +1,27 @@
+{
+  "epoch": "2026-05-16",
+  "schema": "arc.seedcatalog.flex_server_catalog.v2",
+  "servers": [
+    {
+      "capabilities": [
+        "metadata_lookup"
+      ],
+      "items": [
+        {
+          "category": "media/movie/public-domain",
+          "path": "/catalog/public-domain/item/001",
+          "title": "Temporary Demo Title A"
+        },
+        {
+          "category": "media/movie/public-domain",
+          "path": "/catalog/public-domain/item/002",
+          "title": "Temporary Demo Title B"
+        }
+      ],
+      "legal_basis": "public_domain_or_licensed",
+      "region": "CA",
+      "server_id": "public-domain-node-a",
+      "server_type": "authorized_catalog"
+    }
+  ]
+}
