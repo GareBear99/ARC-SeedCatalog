@@ -24,6 +24,16 @@ authorized JSON
   -> OmniBinary .arcbin
 ```
 
+## Module 1 — the SPSC ring (first starship module)
+
+This bounded SPSC tick ring is **module 1, the foundational module**,
+in ring form. It is the causal tick channel the LuciferAI bubbles'
+tick ordering depends on — and the starship, when it drops in, drops
+into this same channel. The ring is the module: bounded, backpressure,
+FIFO, ticks cannot pile up. The raw ring hits millions of ticks/sec
+(~1.36M tracked); the full pipeline does not (~12.4K entries/s) — the
+ring is the millions/sec part.
+
 ## Causal ticks (SPSC)
 
 Each catalog entry is a causal tick. Ticks flow through a bounded

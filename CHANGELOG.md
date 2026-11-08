@@ -1,7 +1,10 @@
 # Changelog
 
-## Unreleased — SPSC causal ticks
+## Unreleased — SPSC causal ticks (Module 1, first starship module)
 
+- The SPSC ring is **module 1, the first starship module**, in ring form:
+  the causal tick channel the LuciferAI bubbles' tick ordering (and the
+  starship, when it drops in) depend on.
 - Bounded SPSC ring for the causal tick path (`cli/arc_seedcatalog/spsc.py`):
   preallocated power-of-two ring, backpressure on full (never drop,
   never grow), FIFO causal order, no lock in the hot path. The tick

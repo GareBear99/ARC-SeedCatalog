@@ -1,5 +1,9 @@
 """Bounded single-producer single-consumer (SPSC) ring for causal ticks.
 
+Module 1 — the first starship module, in ring form. This ring is the
+causal tick channel the LuciferAI bubbles' tick ordering depends on —
+and the starship, when it drops in, drops into this same channel.
+
 The causal ticks of ARC-SeedCatalog are the per-entry events that flow
 through the pipeline::
 
