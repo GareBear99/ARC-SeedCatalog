@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased — SPSC causal ticks
+
+- Bounded SPSC ring for the causal tick path (`cli/arc_seedcatalog/spsc.py`):
+  preallocated power-of-two ring, backpressure on full (never drop,
+  never grow), FIFO causal order, no lock in the hot path. The tick
+  flow ingest → normalize → hash → bundle is now bounded end to end.
+- `build()` streams rows through the ring (producer thread + consumer);
+  output is byte-identical to the unbounded pipeline (same catalog_hash).
+  New `--ring-capacity` flag on `ingest` / `replay` (default 1024).
+- New tests `tests/test_spsc.py` (7 tests: boundedness, backpressure,
+  no pile-up past capacity, FIFO order, drain-on-close, identical hash
+  with a ring of 8).
+- New benchmark `benchmarks/benchmark_spsc.py` + report
+  `benchmarks/BENCHMARK_SPSC_REPORT.json`: raw ring ~1.36M ticks/s
+  (tracked) / ~1.81M (untracked); full pipeline ~12.4K entries/s.
+  The full pipeline is bounded by per-entry HMAC + canonical JSON, not
+  by the ring; millions of entries/sec needs a compiled hot path.
+
 ## v0.9.0 — Public Production Complete
 
 Public-facing production package.

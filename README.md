@@ -24,6 +24,32 @@ authorized JSON
   -> OmniBinary .arcbin
 ```
 
+## Causal ticks (SPSC)
+
+Each catalog entry is a causal tick. Ticks flow through a bounded
+single-producer single-consumer (SPSC) ring (`cli/arc_seedcatalog/spsc.py`,
+FreeEQ8 lock-free discipline): the producer streams normalized rows into
+the ring and the consumer hashes them into receipts. The ring holds at
+most `capacity` ticks in flight (default 1024, `--ring-capacity`); when
+it is full the producer blocks (backpressure). Ticks are never dropped
+and the buffer never grows, so ticks cannot pile up. FIFO order is
+preserved, which keeps the causal tick ordering intact, and the output
+is byte-identical to the unbounded pipeline (same `catalog_hash`).
+
+Measured on a Linux VM (4 vCPU, Python 3.12), median of 3 runs
+(`benchmarks/benchmark_spsc.py`):
+
+| Path | Rate |
+|---|---:|
+| Raw SPSC tick ring (tracked) | ~1.36M ticks/s |
+| Raw SPSC tick ring (untracked) | ~1.81M ticks/s |
+| Full pipeline (ingest → hash → bundle) | ~12.4K entries/s (~62K hash ops/s) |
+
+The ring hits millions/sec; the full pipeline does not, because each
+entry costs ~2 canonical-JSON serialisations + 2 HMAC-SHA256 + 3 SHA-256.
+Millions of entries/sec for the full pipeline needs a compiled hot path
+and/or a cheaper per-entry scheme — see `benchmarks/BENCHMARK_SPSC_REPORT.json`.
+
 ## Features
 
 - Static GitHub Pages app

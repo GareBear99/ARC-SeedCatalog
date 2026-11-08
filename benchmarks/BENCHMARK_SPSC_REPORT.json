@@ -1,0 +1,63 @@
+{
+  "schema": "arc.seedcatalog.benchmark_spsc.v9",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "machine": {
+    "note": "Linux VM, 4 vCPU, 8 GB RAM (this run)"
+  },
+  "workload": {
+    "catalog": "/home/hatch/workspace/ARC-SeedCatalog-work/out/bench/synthetic_50000.example.json",
+    "entries": 50000,
+    "ticks": 2000000
+  },
+  "raw_spsc_ring_ticks_per_second": [
+    {
+      "capacity": 1024,
+      "track": true,
+      "ticks": 2000000,
+      "runs": 3,
+      "ticks_per_second_median": 1364812,
+      "ticks_per_second_min": 1348837,
+      "ticks_per_second_max": 1382787,
+      "max_inflight_observed": 1024
+    },
+    {
+      "capacity": 4096,
+      "track": true,
+      "ticks": 2000000,
+      "runs": 3,
+      "ticks_per_second_median": 1301491,
+      "ticks_per_second_min": 1211895,
+      "ticks_per_second_max": 1426530,
+      "max_inflight_observed": 4096
+    },
+    {
+      "capacity": 4096,
+      "track": false,
+      "ticks": 2000000,
+      "runs": 3,
+      "ticks_per_second_median": 1808638,
+      "ticks_per_second_min": 1372242,
+      "ticks_per_second_max": 1853170,
+      "max_inflight_observed": 0
+    }
+  ],
+  "full_pipeline_entries_per_second": [
+    {
+      "entries": 50000,
+      "ring_capacity": 1024,
+      "runs": 3,
+      "seconds_median": 4.036,
+      "entries_per_second": 12388,
+      "hash_ops_per_second": 61942
+    },
+    {
+      "entries": 50000,
+      "ring_capacity": 8,
+      "runs": 3,
+      "seconds_median": 4.6476,
+      "entries_per_second": 10758,
+      "hash_ops_per_second": 53791
+    }
+  ],
+  "reading": "The raw SPSC tick ring is the channel; the full pipeline is the product. The ring can exceed 1M ticks/s in pure Python. The full pipeline cannot in pure Python: each entry costs ~2 canonical-JSON serialisations + 2 HMAC-SHA256 + 3 SHA-256 (~30us/entry in-process). Reaching millions of entries/sec for the full pipeline needs a compiled hot path (a C/Rust extension, or a reimplementation of the per-entry hashing) and/or a cheaper per-entry scheme (fewer hash ops, precomputed canonical forms, batched hashing)."
+}

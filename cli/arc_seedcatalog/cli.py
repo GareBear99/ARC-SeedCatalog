@@ -1,39 +1,87 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, hashlib, hmac, json, zipfile, struct
+import argparse, hashlib, hmac, json, zipfile, struct, threading
 from pathlib import Path
 from datetime import date
+# SPSC ring for the causal tick path. Works both when this file is run
+# as a script (python cli/arc_seedcatalog/cli.py) and when imported as
+# a package module.
+try:
+    from spsc import SPSCRing
+except ImportError:  # package import
+    from .spsc import SPSCRing
 DENY={"title","name","url","href","path","server","server_id","host","hostname","stream","stream_url","watch_url","poster","image","description","overview","token","cookie","authorization","email","user"}
 def canon(obj): return json.dumps(obj, sort_keys=True, separators=(",", ":"))
 def sha(s): return hashlib.sha256(s.encode()).hexdigest()
 def hm(seed,msg): return hmac.new(seed.encode(), msg.encode(), hashlib.sha256).hexdigest()
-def rows(doc):
-    if isinstance(doc,list): return doc
-    out=[]
-    if isinstance(doc,dict) and isinstance(doc.get("servers"),list):
+def iter_rows(doc):
+    """Yield normalized catalog rows one at a time (a causal tick each).
+
+    This is the tick producer side: rows are streamed, never
+    materialised into one big list, so a huge catalog cannot pile up
+    unprocessed rows in memory. The consumer pulls them through the
+    bounded SPSC ring instead.
+    """
+    if isinstance(doc, list):
+        yield from doc
+        return
+    if isinstance(doc, dict) and isinstance(doc.get("servers"), list):
         for srv in doc["servers"]:
-            for it in srv.get("items",[]):
-                x=dict(it); x["_server_type"]=srv.get("server_type","authorized_catalog"); x["_region"]=srv.get("region","unknown"); x["_legal_basis"]=srv.get("legal_basis","authorized_or_internal"); x["_server_id"]=srv.get("server_id","source"); out.append(x)
-    elif isinstance(doc,dict) and isinstance(doc.get("data"),list): out=doc["data"]
-    elif isinstance(doc,dict) and isinstance(doc.get("items"),list): out=doc["items"]
-    elif isinstance(doc,dict):
-        for k,v in doc.items():
-            if isinstance(v,list):
+            for it in srv.get("items", []):
+                x = dict(it); x["_server_type"] = srv.get("server_type", "authorized_catalog"); x["_region"] = srv.get("region", "unknown"); x["_legal_basis"] = srv.get("legal_basis", "authorized_or_internal"); x["_server_id"] = srv.get("server_id", "source"); yield x
+    elif isinstance(doc, dict) and isinstance(doc.get("data"), list):
+        yield from doc["data"]
+    elif isinstance(doc, dict) and isinstance(doc.get("items"), list):
+        yield from doc["items"]
+    elif isinstance(doc, dict):
+        for k, v in doc.items():
+            if isinstance(v, list):
                 for it in v:
-                    if isinstance(it,dict):
-                        x=dict(it); x["_server_id"]=k; x["_server_type"]="object_map"; out.append(x)
-    return out
+                    if isinstance(it, dict):
+                        x = dict(it); x["_server_id"] = k; x["_server_type"] = "object_map"; yield x
+def rows(doc):
+    """All normalized rows as a list (kept for callers that want them)."""
+    return list(iter_rows(doc))
 def cat(raw):
     m={"movie":"media/movie/authorized","film":"media/movie/authorized","show":"media/show/authorized","tv":"media/show/authorized","public-domain":"media/public-domain/authorized","public":"media/public-domain/authorized","internal":"asset/internal/authorized","asset":"asset/internal/authorized","game":"game/homebrew/authorized","homebrew":"game/homebrew/authorized"}
     s=str(raw or "").lower().replace(" ","-")
     return m.get(s, f"catalog/authorized/{s}" if s else "catalog/authorized/uncategorized")
-def build(path,seed,epoch):
+def build(path,seed,epoch,ring_capacity=1024):
     doc=json.loads(Path(path).read_text()); receipts=[]; rh=sha("arc.seedcatalog.ruleset.v9"); cmh=sha("category-map-v9"); ah=sha("adapter-v9")
-    for it in rows(doc):
+    # --- Causal tick path: bounded SPSC ring -------------------------
+    # Producer thread streams normalized rows (one tick each) into the
+    # ring; this thread consumes them and hashes them into receipts.
+    # The ring holds at most ring_capacity ticks in flight. When it is
+    # full the producer BLOCKS (backpressure) -- ticks are never
+    # dropped and the buffer never grows, so ticks cannot pile up.
+    # The per-entry hashing below is byte-identical to the old loop,
+    # so catalog_hash / replay output is unchanged.
+    ring=SPSCRing(ring_capacity); errors=[]
+    def produce():
+        try:
+            for row in iter_rows(doc):
+                ring.push(row)
+        except BaseException as exc:
+            errors.append(exc)
+        finally:
+            ring.close()
+    producer=threading.Thread(target=produce, name="seedcatalog-producer", daemon=True)
+    producer.start()
+    while True:
+        it=ring.pop()
+        if it is None:
+            break
         c=cat(it.get("category") or it.get("genre") or it.get("type")); sf={"server_type":it.get("_server_type",it.get("type","authorized_catalog")),"region":it.get("_region","unknown"),"legal_basis":it.get("_legal_basis","authorized_or_internal")}
         sid=sha(canon(sf)); vol=f"{it.get('_server_id',it.get('server','source'))}|{it.get('path',it.get('url',it.get('href',it.get('id',''))))}|{it.get('title',it.get('name',''))}|{epoch}"
         core={"schema":"arc.seedcatalog.entry_receipt.v9","entry_id":"hmac-sha256:"+hm(seed,sid+"|"+vol),"source_id":"sha256:"+sid,"category_vector":"hmac-sha256:"+hm(seed,c+"|"+rh+"|"+cmh),"category_path_hash":"sha256:"+sha(c),"ruleset_hash":"sha256:"+rh,"category_map_hash":"sha256:"+cmh,"adapter_profile_hash":"sha256:"+ah,"epoch":epoch,"stored_raw_data":False,"stores_title":False,"stores_path":False,"stores_server_name":False,"stores_url":False,"stores_user_data":False}
         core["receipt_hash"]="sha256:"+sha(canon(core)); receipts.append(core)
+    producer.join()
+    if errors:
+        raise errors[0]
+    # The receipts list is the deliverable bundle (it must hold every
+    # receipt by definition). What the ring bounds is the *in-flight*
+    # ticks between producer and consumer -- at most ring_capacity
+    # unprocessed ticks ever exist, however large the catalog is.
     receipts.sort(key=lambda r:r["receipt_hash"])
     rb={"schema":"arc.seedcatalog.receipt_bundle.v9","count":len(receipts),"receipts":receipts,"stores_raw_data":False}; rb["bundle_hash"]="sha256:"+sha(canon(rb))
     records=[{"schema":"arc.core.seedcatalog_registration.v9","source":"arc-seedcatalog","object_type":"seedcatalog_entry_receipt","receipt_hash":r["receipt_hash"],"entry_id":r["entry_id"],"source_id":r["source_id"],"category_vector":r["category_vector"],"category_path_hash":r["category_path_hash"],"ruleset_hash":r["ruleset_hash"],"category_map_hash":r["category_map_hash"],"adapter_profile_hash":r["adapter_profile_hash"],"stores_raw_data":False} for r in receipts]
@@ -69,22 +117,22 @@ def verify_binary(path):
     b=Path(path).read_bytes(); ok=b[:8]==b"ARCSCAT\0"; ver=struct.unpack(">I",b[8:12])[0]; ln=struct.unpack(">Q",b[12:20])[0]; dg=b[20:52]; payload=b[52:]; ok=ok and ver==9 and ln==len(payload) and hashlib.sha256(payload).digest()==dg; print(json.dumps({"ok":ok,"version":ver,"payload_length":len(payload),"payload_sha256":dg.hex()},indent=2)); return 0 if ok else 1
 def main():
     ap=argparse.ArgumentParser(prog="arc-seedcatalog"); sub=ap.add_subparsers(dest="cmd",required=True)
-    ing=sub.add_parser("ingest"); ing.add_argument("json_file"); ing.add_argument("--seed",default="arc-seedcatalog-local-cli-seed"); ing.add_argument("--epoch",default=date.today().isoformat()); ing.add_argument("--out",default="out/split.json")
+    ing=sub.add_parser("ingest"); ing.add_argument("json_file"); ing.add_argument("--seed",default="arc-seedcatalog-local-cli-seed"); ing.add_argument("--epoch",default=date.today().isoformat()); ing.add_argument("--out",default="out/split.json"); ing.add_argument("--ring-capacity",type=int,default=1024,help="SPSC ring capacity: max causal ticks in flight (power of two, default 1024). The producer blocks when full; ticks are never dropped.")
     ver=sub.add_parser("verify"); ver.add_argument("split_file")
     aud=sub.add_parser("audit-leaks"); aud.add_argument("split_file")
-    rep=sub.add_parser("replay"); rep.add_argument("json_file"); rep.add_argument("--seed",required=True); rep.add_argument("--epoch",required=True); rep.add_argument("--expect-hash",required=True)
+    rep=sub.add_parser("replay"); rep.add_argument("json_file"); rep.add_argument("--seed",required=True); rep.add_argument("--epoch",required=True); rep.add_argument("--expect-hash",required=True); rep.add_argument("--ring-capacity",type=int,default=1024)
     ex=sub.add_parser("export-jsonl"); ex.add_argument("split_file"); ex.add_argument("--out",default="out/records.jsonl")
     pp=sub.add_parser("proof-pack"); pp.add_argument("split_file"); pp.add_argument("--out",default="out/proof-pack.json")
     zp=sub.add_parser("zip-pack"); zp.add_argument("split_file"); zp.add_argument("--out",default="out/proof-pack.zip")
     eb=sub.add_parser("export-binary"); eb.add_argument("split_file"); eb.add_argument("--out",default="out/split.arcbin")
     vb=sub.add_parser("verify-binary"); vb.add_argument("arcbin_file")
     a=ap.parse_args()
-    if a.cmd=="ingest": Path(a.out).parent.mkdir(parents=True,exist_ok=True); Path(a.out).write_text(json.dumps(build(a.json_file,a.seed,a.epoch),indent=2)+"\n"); print(a.out)
+    if a.cmd=="ingest": Path(a.out).parent.mkdir(parents=True,exist_ok=True); Path(a.out).write_text(json.dumps(build(a.json_file,a.seed,a.epoch,ring_capacity=a.ring_capacity),indent=2)+"\n"); print(a.out)
     elif a.cmd=="verify": raise SystemExit(verify_file(a.split_file))
     elif a.cmd=="audit-leaks":
         res=audit_obj(json.loads(Path(a.split_file).read_text())); print(json.dumps(res,indent=2)); raise SystemExit(0 if res["ok"] else 1)
     elif a.cmd=="replay":
-        actual=build(a.json_file,a.seed,a.epoch)["catalog_hash"]; res={"ok":actual==a.expect_hash,"actual_hash":actual,"expected_hash":a.expect_hash}; print(json.dumps(res,indent=2)); raise SystemExit(0 if res["ok"] else 1)
+        actual=build(a.json_file,a.seed,a.epoch,ring_capacity=a.ring_capacity)["catalog_hash"]; res={"ok":actual==a.expect_hash,"actual_hash":actual,"expected_hash":a.expect_hash}; print(json.dumps(res,indent=2)); raise SystemExit(0 if res["ok"] else 1)
     elif a.cmd=="export-jsonl": export_jsonl(a.split_file,a.out)
     elif a.cmd=="proof-pack": proof_pack(a.split_file,a.out)
     elif a.cmd=="zip-pack": zip_pack(a.split_file,a.out)
