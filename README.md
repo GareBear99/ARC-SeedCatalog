@@ -31,8 +31,10 @@ in ring form. It is the causal tick channel the LuciferAI bubbles'
 tick ordering depends on — and the starship, when it drops in, drops
 into this same channel. The ring is the module: bounded, backpressure,
 FIFO, ticks cannot pile up. The raw ring hits millions of ticks/sec
-(~1.36M tracked); the full pipeline does not (~12.4K entries/s) — the
-ring is the millions/sec part.
+(~1.36M tracked, ~1.81M untracked) — as good as anyone's pipeline at
+the million+ rate it says: it delivers the causal ticks at the rate it
+claims. The full pipeline does not (~12.4K entries/s) — the ring is the
+millions/sec part.
 
 ## Causal ticks (SPSC)
 
