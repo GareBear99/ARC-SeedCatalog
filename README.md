@@ -62,6 +62,19 @@ entry costs ~2 canonical-JSON serialisations + 2 HMAC-SHA256 + 3 SHA-256.
 Millions of entries/sec for the full pipeline needs a compiled hot path
 and/or a cheaper per-entry scheme — see `benchmarks/BENCHMARK_SPSC_REPORT.json`.
 
+## Hierarchy
+
+- **ARC-SeedCatalog** (this repo) — the catalog / bundle pipeline side
+  (Python). Module 1 is the SPSC tick ring discipline.
+- **[ARC-VM](https://github.com/GareBear99/ARC-VM)** — the VM-side C
+  runtime side. Its ring is the Module 1 discipline ported to C11
+  (`spsc.h`), plus the deca unison bench.
+
+The relationship: ARC-VM's ring IS Module 1's discipline in C, and the
+compiled hot path this README says the full pipeline needs to reach
+millions/sec lives in ARC-VM. SeedCatalog stays the catalog/bundle
+side; ARC-VM is the runtime side.
+
 ## Features
 
 - Static GitHub Pages app
